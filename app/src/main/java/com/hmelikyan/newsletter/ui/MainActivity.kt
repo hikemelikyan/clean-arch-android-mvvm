@@ -1,4 +1,4 @@
-package com.hmelikyan.newsletter
+package com.hmelikyan.newsletter.ui
 
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -6,9 +6,17 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
+import com.hmelikyan.newsletter.R
+import com.hmelikyan.newsletter.di.DaggerAppComponent
 import com.hmelikyan.newsletter.domain.Domain
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    @Inject lateinit var domain: Domain
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,8 +27,10 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
-        val domain = Domain()
-        val data = domain.getData()
+        DaggerAppComponent.builder().withContext(this)
+            .build()
+            .inject(this)
+        Toast.makeText(this, domain.logIn(),Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

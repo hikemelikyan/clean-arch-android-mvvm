@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion 30
@@ -26,6 +28,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -34,16 +40,47 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project(":domain")
+    implementation project(":data")
     implementation project(":root")
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
-    testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation thirdPartyLibraries.kotlin
+    implementation thirdPartyLibraries.coroutines_android
+    implementation thirdPartyLibraries.coroutines_core
+
+    implementation thirdPartyLibraries.appcompat
+    implementation thirdPartyLibraries.core_ktx
+
+    implementation thirdPartyLibraries.fragment_ktx
+    implementation thirdPartyLibraries.constraintlayout
+
+    implementation thirdPartyLibraries.multidex
+
+    implementation thirdPartyLibraries.lifecycleCommon
+    implementation thirdPartyLibraries.lifecycleViewModel
+    implementation thirdPartyLibraries.lifecycleData
+
+    implementation thirdPartyLibraries.navigation
+    implementation thirdPartyLibraries.navigation_ui
+
+    implementation thirdPartyLibraries.glide
+    implementation thirdPartyLibraries.glideOkHttp3
+    implementation thirdPartyLibraries.glideCompiler
+
+    implementation thirdPartyLibraries.retrofit
+    implementation thirdPartyLibraries.retrofit_gson_converter
+    implementation thirdPartyLibraries.retrofit_scallars_converter
+
+    implementation thirdPartyLibraries.hilt_android
+    implementation thirdPartyLibraries.fragment_ktx
+
+    implementation thirdPartyLibraries.material
+
+    implementation thirdPartyLibraries.legacy_support
+
+    implementation thirdPartyLibraries.paging
+
+    testImplementation testDependencies.junit
+    androidTestImplementation androidTestsDependencies.test_runner
+    androidTestImplementation androidTestsDependencies.espresso_core
+    kapt kaptDeps.hilt_android_compiler
 
 }

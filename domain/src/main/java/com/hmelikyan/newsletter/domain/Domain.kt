@@ -1,19 +1,19 @@
 package com.hmelikyan.newsletter.domain
 
-import com.hmelikyan.newsletter.data.Data
+import com.hmelikyan.newsletter.domain.data.AuthRepository
+import javax.inject.Inject
 
-class Domain() {
-
-    private val data: Data = Data()
+class Domain @Inject constructor(
+    private val authRepository: AuthRepository
+) {
 
     private fun modifyData(count: Float): Float {
         return (count * Math.PI).toFloat()
     }
 
 
-    fun getData(): Float {
-        val getCount = data.getRootValue()
-        return modifyData(getCount.toFloat())
+    fun logIn(): String {
+        return authRepository.logIn()
     }
 
 }
