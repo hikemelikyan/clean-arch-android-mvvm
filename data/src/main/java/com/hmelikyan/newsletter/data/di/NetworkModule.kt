@@ -1,8 +1,7 @@
 package com.hmelikyan.newsletter.data.di
 
 import com.hmelikyan.newsletter.root.BuildConfig
-import com.hmelikyan.newsletter.root.common.AppConstants
-import com.hmelikyan.newsletter.root.utils.SharedPreferencesHelper
+import com.hmelikyan.newsletter.root.shared.utils.SharedPreferencesHelper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,9 +29,9 @@ class NetworkModule {
             val initialRequest = it.request()
             val request = initialRequest.newBuilder()
                 .header("Content-Type", "application/json")
-                .header("Authorization", "Bearer " + sharedPreferences.readString(AppConstants.TOKEN))
-                .header("deviceToken", sharedPreferences.readString(AppConstants.FIREBASE_TOKEN) ?: "")
-                .header("deviceId", sharedPreferences.readString(AppConstants.DEVICE_ID) ?: "")
+                .header("Authorization", "Bearer " + sharedPreferences.getAuthToken())
+                .header("deviceToken", sharedPreferences.getFirebaseToken() ?: "")
+                .header("deviceId", sharedPreferences.getDeviceId() ?: "")
                 .header("osType", "Android")
                 .removeHeader("Pragma")
                 .build()

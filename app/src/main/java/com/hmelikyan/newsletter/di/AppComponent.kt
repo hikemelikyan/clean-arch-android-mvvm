@@ -1,20 +1,26 @@
 package com.hmelikyan.newsletter.di
 
-import android.content.Context
-import com.hmelikyan.newsletter.data.di.DataModule
+import com.hmelikyan.newsletter.Application
 import com.hmelikyan.newsletter.data.di.NetworkModule
 import com.hmelikyan.newsletter.domain.di.DomainModule
-import com.hmelikyan.newsletter.ui.MainActivity
-import dagger.BindsInstance
+import com.hmelikyan.newsletter.root.di.RootModuleBinds
 import dagger.Component
+import dagger.hilt.android.internal.modules.ApplicationContextModule
 
-@Component(modules = [NetworkModule::class,DataModule::class,DomainModule::class])
+@Component(
+    modules = [
+        ApplicationContextModule::class,
+        NetworkModule::class,
+        DomainModule::class,
+        RootModuleBinds::class
+    ]
+)
 interface AppComponent {
-    fun inject(target: MainActivity)
+    fun inject(target: Application)
 
     @Component.Builder
-    interface Builder{
-        fun withContext(@BindsInstance context: Context):Builder
+    interface Builder {
+        fun withAppModule(module:ApplicationContextModule):Builder
         fun build():AppComponent
     }
 }

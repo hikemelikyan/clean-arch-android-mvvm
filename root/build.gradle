@@ -30,18 +30,30 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+
     implementation thirdPartyLibraries.kotlin
     implementation thirdPartyLibraries.retrofit
     implementation thirdPartyLibraries.hilt_android
+
     implementation thirdPartyLibraries.retrofit_gson_converter
     implementation thirdPartyLibraries.retrofit_scallars_converter
+
     implementation thirdPartyLibraries.core_ktx
     implementation thirdPartyLibraries.appcompat
     implementation thirdPartyLibraries.fragment_ktx
+    implementation thirdPartyLibraries.legacy_support
+
+    implementation thirdPartyLibraries.constraintlayout
+    implementation thirdPartyLibraries.recyclerView
+
     testImplementation testDependencies.junit
     androidTestImplementation androidTestsDependencies.test_runner
     androidTestImplementation androidTestsDependencies.espresso_core

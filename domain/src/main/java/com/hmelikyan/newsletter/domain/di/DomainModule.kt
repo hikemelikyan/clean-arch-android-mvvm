@@ -12,6 +12,6 @@ import dagger.hilt.android.components.ApplicationComponent
 abstract class DomainModule {
 
     @Binds
-    abstract fun bindsAuthRepository(authRepository:AuthRepositoryImpl):AuthRepository
+    abstract fun bindsAuthRepository(authRepository: AuthRepositoryImpl): AuthRepository
 
 }
