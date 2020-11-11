@@ -1,4 +1,4 @@
-package com.hmelikyan.newsletter.root.ui
+package com.hmelikyan.newsletter.mvvm.ui
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView

@@ -1,17 +1,17 @@
 package com.hmelikyan.newsletter.domain.di
 
-import com.hmelikyan.newsletter.domain.data.AuthRepository
-import com.hmelikyan.newsletter.domain.data.AuthRepositoryImpl
+import com.hmelikyan.newsletter.domain.repository.NotificationsRepository
+import com.hmelikyan.newsletter.domain.repository.NotificationsRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.components.ActivityComponent
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(ActivityComponent::class)
 abstract class DomainModule {
 
     @Binds
-    abstract fun bindsAuthRepository(authRepository: AuthRepositoryImpl): AuthRepository
+    abstract fun bindsNotificationsRepository(notificationsRepository: NotificationsRepositoryImpl): NotificationsRepository
 
 }

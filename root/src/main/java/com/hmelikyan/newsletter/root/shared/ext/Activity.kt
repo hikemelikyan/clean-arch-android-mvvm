@@ -60,24 +60,6 @@ fun AppCompatActivity.setLightStatusBar() {
     }
 }
 
-fun AppCompatActivity.setDarkStatusBar() {
-    window.apply {
-        if (Build.VERSION.SDK_INT > 22) {
-            decorView.systemUiVisibility = if (Build.VERSION.SDK_INT > 27) {
-                navigationBarColor = ContextCompat.getColor(this@setDarkStatusBar, android.R.color.white)
-                navigationBarDividerColor = ContextCompat.getColor(this@setDarkStatusBar, R.color.divider_color)
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-            } else {
-                navigationBarColor = ContextCompat.getColor(this@setDarkStatusBar, android.R.color.black)
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-            }
-            statusBarColor = ContextCompat.getColor(this@setDarkStatusBar, android.R.color.transparent)
-        } else {
-            statusBarColor = ContextCompat.getColor(this@setDarkStatusBar, android.R.color.black)
-        }
-    }
-}
-
 fun AppCompatActivity.clearLightStatusBar() {
     window?.apply {
         if (Build.VERSION.SDK_INT > 22) {

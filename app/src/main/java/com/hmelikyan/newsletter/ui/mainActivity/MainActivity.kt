@@ -1,31 +1,43 @@
 package com.hmelikyan.newsletter.ui.mainActivity
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.hmelikyan.newsletter.R
+import com.hmelikyan.newsletter.databinding.ActivityMainBinding
+import com.hmelikyan.newsletter.mvvm.ui.BaseActivityMVVM
+import com.hmelikyan.newsletter.mvvm.vm.ViewCommand
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-
-    @Inject lateinit var domain: Domain
+class MainActivity : BaseActivityMVVM<ActivityMainBinding, MainViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.toolbar))
+        setContentView(mBinding.root)
+        setSupportActionBar(mBinding.toolbar)
 
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
+        mBinding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+                .setAction("Action", null).show()
         }
-        Toast.makeText(this, domain.logIn(),Toast.LENGTH_SHORT).show()
+        DaggerMainActivityComponent.builder()
+    }
+
+    override val viewModelType: Class<MainViewModel>
+        get() = MainViewModel::class.java
+    override val inflate: (LayoutInflater) -> ActivityMainBinding
+        get() = ActivityMainBinding::inflate
+
+    override fun proceedViewCommand(command: ViewCommand) {
+
+    }
+
+    override fun onRetryRequest() {
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

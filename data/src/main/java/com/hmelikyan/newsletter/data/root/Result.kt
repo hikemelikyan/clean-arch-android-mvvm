@@ -8,20 +8,17 @@ data class Result<R>(
 ) {
 
     companion object {
-        fun <R> makeSuccessResult(data: R?) = Result(UIState.SUCCESS, data, null, null)
+        fun <R> makeSuccessResult(data: R) =
+            Result(UIState.SUCCESS, data, null, null)
 
-        fun <E> makeInternalErrorResult(msg: String?, error: Throwable) =
-            Result<E>(UIState.INTERNAL_ERROR, null, msg, error)
+        inline fun <reified E> makeErrorResult(state: UIState, msg: String? = null, error: Throwable? = null) =
+            Result<E>(state, null, msg, error)
 
-        fun <E> makeNetworkErrorResult(msg: String, error: Throwable? = null) =
-            Result<E>(UIState.NETWORK_ERROR, null, msg, error)
+        inline fun <reified E> makeEmptyResult(message: String? = null) =
+            Result(UIState.EMPTY, null as E, message, null)
 
-        fun <E> makeServerErrorResult(msg: String?, error: Throwable?) =
-            Result<E>(UIState.SERVER_ERROR, null, msg, error)
-
-        fun <E> makeEmptyResult(message: String?) = Result<E>(UIState.EMPTY, null, message, null)
-
-        fun <L> makeLoadingResult(message: String?) = Result<L>(UIState.LOADING, null, message, null)
+        inline fun <reified L> makeLoadingResult(message: String? = null) =
+            Result<L>(UIState.LOADING, null, message, null)
 
     }
 }
