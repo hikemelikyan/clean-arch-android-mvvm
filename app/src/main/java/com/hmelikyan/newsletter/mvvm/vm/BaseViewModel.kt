@@ -22,6 +22,10 @@ open class BaseViewModel : ViewModel(), CoroutineScope {
 
     protected open fun inject() {}
 
+    protected fun switchUIState(state:UIState){
+        _uiState.postValue(UIState.SUCCESS)
+    }
+
     fun CoroutineScope.launchIO(block: suspend () -> Unit) {
         launch(context = Dispatchers.IO) { block() }
     }

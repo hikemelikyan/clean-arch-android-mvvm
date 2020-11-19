@@ -18,7 +18,6 @@ class MainViewModel : BaseViewModel() {
 
     init {
         inject()
-        getTest()
     }
 
     fun getTest() {

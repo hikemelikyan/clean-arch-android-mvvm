@@ -1,6 +1,6 @@
 package com.hmelikyan.newsletter.data.root
 
-enum class UIState{
+enum class UIState {
     SUCCESS,
     LOADING,
     INTERNAL_ERROR,

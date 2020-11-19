@@ -15,7 +15,10 @@ class MainActivity : BaseActivityMVVM<ActivityMainBinding,MainViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(mBinding.toolbar)
-
+        mViewModel.getTest()
+        mBinding.fab.setOnClickListener {
+            mViewModel.getTest()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
