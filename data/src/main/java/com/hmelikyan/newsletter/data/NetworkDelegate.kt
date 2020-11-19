@@ -6,7 +6,7 @@ import javax.inject.Inject
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
-class NetworkDelegate<T> @Inject constructor(
+class NetworkDelegate<T>(
     private val iService: Class<T>
 ) : ReadOnlyProperty<Any, T> {
 

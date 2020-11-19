@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion 30
@@ -71,7 +70,8 @@ dependencies {
     implementation thirdPartyLibraries.retrofit_gson_converter
     implementation thirdPartyLibraries.retrofit_scallars_converter
 
-    implementation thirdPartyLibraries.hilt_android
+    implementation thirdPartyLibraries.dagger
+    kapt kaptDeps.dagger_compiler
 
     implementation thirdPartyLibraries.material
 
@@ -82,6 +82,5 @@ dependencies {
     testImplementation testDependencies.junit
     androidTestImplementation androidTestsDependencies.test_runner
     androidTestImplementation androidTestsDependencies.espresso_core
-    kapt kaptDeps.hilt_android_compiler
 
 }

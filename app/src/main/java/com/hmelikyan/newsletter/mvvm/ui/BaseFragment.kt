@@ -17,7 +17,7 @@ import com.hmelikyan.newsletter.ui.commands.Commands
 
 abstract class BaseFragment : Fragment(), IBaseView {
 
-    lateinit var mActivity: BaseActivity
+    protected lateinit var mActivity: BaseActivity
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -51,9 +51,7 @@ abstract class BaseFragment : Fragment(), IBaseView {
     }
 
     fun hasPermission(permission: String): Boolean {
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || requireContext().checkSelfPermission(
-            permission
-        ) == PackageManager.PERMISSION_GRANTED
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || requireContext().checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED
     }
 
     abstract fun onRetryRequest()

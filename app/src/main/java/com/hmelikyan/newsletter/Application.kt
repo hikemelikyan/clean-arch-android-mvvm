@@ -1,14 +1,14 @@
 package com.hmelikyan.newsletter
 
 import android.app.Application
+import com.hmelikyan.newsletter.data.di.NetworkModule
+import com.hmelikyan.newsletter.di.AppComponent
 import com.hmelikyan.newsletter.di.DaggerAppComponent
 import com.hmelikyan.newsletter.root.di.DeviceID
+import com.hmelikyan.newsletter.root.di.RootModule
 import com.hmelikyan.newsletter.root.shared.utils.SharedPreferencesHelper
-import dagger.hilt.android.HiltAndroidApp
-import dagger.hilt.android.internal.modules.ApplicationContextModule
 import javax.inject.Inject
 
-@HiltAndroidApp
 class Application : Application() {
 
     companion object {
@@ -16,6 +16,7 @@ class Application : Application() {
 
         fun getInstance() = mInstance
     }
+    private lateinit var appComponent: AppComponent
 
     @Inject
     lateinit var mShared: SharedPreferencesHelper
@@ -27,12 +28,18 @@ class Application : Application() {
     override fun onCreate() {
         super.onCreate()
         mInstance = this
-        DaggerAppComponent.builder()
-            .withAppModule(ApplicationContextModule(applicationContext))
+        appComponent = DaggerAppComponent.builder()
+            .withRootModule(RootModule(this))
+            .withNetworkModule(NetworkModule())
             .build()
-            .inject(this)
+
+        appComponent.inject(this)
 
         mShared.saveDeviceId(deviceId)
-        mShared.saveAuthToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzMDgwIiwianRpIjoiZjJmNDRlOGQtNWRkNy00ZjM2LWE1MjEtZjYwY2UwYzdmYjVlIiwiaWF0IjoxNjA0NTYzNTU4LCJwZXJzb25JZCI6IjMwODAiLCJyb2xlIjoiVXNlciIsIm5iZiI6MTYwNDU2MzU1OCwiZXhwIjoxNjA1MTY4MzU4LCJpc3MiOiJCYWdnbGUuQXBpIiwiYXVkIjoiQmFnZ2xlLlVzZXIifQ.0c0uej4Fx_BqFG8QTBdlzoxBiFQgpgjzs8OwTUjB62I")
+        mShared.saveAuthToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzMDc4IiwianRpIjoiZGI5NGI0ZmYtZDJiZS00Nzg5LWE4ZDEtNWQ0MDg0OTRjMWUxIiwiaWF0IjoxNjA1NzgxMjQyLCJwZXJzb25JZCI6IjMwNzgiLCJyb2xlIjoiVXNlciIsIm5iZiI6MTYwNTc4MTI0MiwiZXhwIjoxNjA2Mzg2MDQyLCJpc3MiOiJCYWdnbGUuQXBpIiwiYXVkIjoiQmFnZ2xlLlVzZXIifQ.m6sKJ0p1R8ADkwvZG7t1MV6J3GuHRdci7PchXVALDPw")
+    }
+
+    fun getAppComponent(): AppComponent {
+        return appComponent
     }
 }

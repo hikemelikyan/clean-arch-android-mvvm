@@ -4,39 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.hmelikyan.newsletter.R
 import com.hmelikyan.newsletter.databinding.ActivityMainBinding
 import com.hmelikyan.newsletter.mvvm.ui.BaseActivityMVVM
 import com.hmelikyan.newsletter.mvvm.vm.ViewCommand
-import dagger.hilt.android.AndroidEntryPoint
+import com.hmelikyan.newsletter.ui.commands.Commands
 
-@AndroidEntryPoint
-class MainActivity : BaseActivityMVVM<ActivityMainBinding, MainViewModel>() {
+class MainActivity : BaseActivityMVVM<ActivityMainBinding,MainViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(mBinding.root)
         setSupportActionBar(mBinding.toolbar)
-
-        mBinding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
-        DaggerMainActivityComponent.builder()
-    }
-
-    override val viewModelType: Class<MainViewModel>
-        get() = MainViewModel::class.java
-    override val inflate: (LayoutInflater) -> ActivityMainBinding
-        get() = ActivityMainBinding::inflate
-
-    override fun proceedViewCommand(command: ViewCommand) {
-
-    }
-
-    override fun onRetryRequest() {
 
     }
 
@@ -50,5 +28,21 @@ class MainActivity : BaseActivityMVVM<ActivityMainBinding, MainViewModel>() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override val viewModelType: Class<MainViewModel>
+        get() = MainViewModel::class.java
+    override val inflate: (LayoutInflater) -> ActivityMainBinding
+        get() = ActivityMainBinding::inflate
+
+    override fun proceedViewCommand(command: ViewCommand) {
+        when(command){
+            is Commands.TestViewCommand -> showToast(command.list?.size.toString())
+            is Commands.ShowLoadingViewCommand -> showToast("Loading")
+        }
+    }
+
+    override fun onRetryRequest() {
+
     }
 }

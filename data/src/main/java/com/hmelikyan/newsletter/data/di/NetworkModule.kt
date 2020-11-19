@@ -1,24 +1,20 @@
 package com.hmelikyan.newsletter.data.di
 
+import android.content.Context
 import com.hmelikyan.newsletter.root.BuildConfig
+import com.hmelikyan.newsletter.root.di.ApplicationContext
+import com.hmelikyan.newsletter.root.di.AuthInterceptor
 import com.hmelikyan.newsletter.root.shared.utils.SharedPreferencesHelper
+import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Qualifier
-import javax.inject.Singleton
 
-@Qualifier
-annotation class AuthInterceptor
-
-@InstallIn(ApplicationComponent::class)
 @Module
 class NetworkModule {
 
@@ -42,9 +38,10 @@ class NetworkModule {
     }
 
     @Provides
-    fun providesOkHttpClient(@AuthInterceptor authInterceptor:Interceptor): OkHttpClient {
+    fun providesOkHttpClient(@AuthInterceptor authInterceptor:Interceptor, @ApplicationContext context: Context): OkHttpClient {
             return OkHttpClient.Builder()
                 .addInterceptor(authInterceptor)
+                .addInterceptor(ChuckInterceptor(context))
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .readTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
@@ -53,7 +50,6 @@ class NetworkModule {
 
 
     @Provides
-    @Singleton
     fun providesRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .client(client)

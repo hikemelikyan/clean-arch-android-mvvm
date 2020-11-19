@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion 30
@@ -24,6 +23,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
@@ -32,7 +38,10 @@ dependencies {
     implementation project(":root")
     implementation thirdPartyLibraries.kotlin
     implementation thirdPartyLibraries.retrofit
-    implementation thirdPartyLibraries.hilt_android
+
+    implementation thirdPartyLibraries.dagger
+    kapt kaptDeps.dagger_compiler
+
     implementation thirdPartyLibraries.retrofit_gson_converter
     implementation thirdPartyLibraries.retrofit_scallars_converter
     implementation thirdPartyLibraries.core_ktx
@@ -41,6 +50,5 @@ dependencies {
     testImplementation testDependencies.junit
     androidTestImplementation androidTestsDependencies.test_runner
     androidTestImplementation androidTestsDependencies.espresso_core
-    kapt kaptDeps.hilt_android_compiler
 
 }

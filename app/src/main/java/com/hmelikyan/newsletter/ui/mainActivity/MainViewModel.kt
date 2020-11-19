@@ -1,34 +1,66 @@
 package com.hmelikyan.newsletter.ui.mainActivity
 
+import com.hmelikyan.newsletter.Application
 import com.hmelikyan.newsletter.data.model.requestModels.GetNotificationsListRequestModel
 import com.hmelikyan.newsletter.data.root.UIState
 import com.hmelikyan.newsletter.domain.useCase.GetNotificationsListUseCase
 import com.hmelikyan.newsletter.mvvm.vm.BaseViewModel
+import com.hmelikyan.newsletter.root.di.RootModule
 import com.hmelikyan.newsletter.ui.commands.Commands
+import com.hmelikyan.newsletter.ui.mainActivity.di.DaggerMainActivityComponent
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
-class MainViewModel : BaseViewModel(){
+class MainViewModel : BaseViewModel() {
 
     @Inject
-    lateinit var getListUseCase:GetNotificationsListUseCase
+    lateinit var getListUseCase: GetNotificationsListUseCase
 
     init {
+        inject()
+        getTest()
+    }
+
+    fun getTest() {
         launchDefault {
             val response = getListUseCase.getNotificationList(getDefaultModel())
             response.collect {
-                if(it.uiState == UIState.SUCCESS){
-                    _viewCommands.postValue(Commands.TestViewCommand(it.data))
+                _uiState.postValue(it.uiState)
+                when (it.uiState) {
+                    UIState.SUCCESS -> {
+                        _viewCommands.postValue(Commands.TestViewCommand(it.data))
+                    }
+                    UIState.INTERNAL_ERROR -> {
+                        _viewCommands.postValue(Commands.ShowMessageTextViewCommand("Internal error"))
+                    }
+                    UIState.LOADING -> {
+                        _viewCommands.postValue(Commands.ShowLoadingViewCommand())
+                    }
+                    UIState.SERVER_ERROR -> {
+                        _viewCommands.postValue(Commands.ShowMessageTextViewCommand(it.msg.toString()))
+                    }
+                    UIState.EMPTY -> {
+                        _viewCommands.postValue(Commands.TestViewCommand(it.data))
+                    }
+                    UIState.NETWORK_ERROR -> {
+                        _viewCommands.postValue(Commands.ShowMessageTextViewCommand(it.msg.toString()))
+                    }
                 }
             }
         }
     }
 
-
-    private fun getDefaultModel():GetNotificationsListRequestModel{
+    private fun getDefaultModel(): GetNotificationsListRequestModel {
         return GetNotificationsListRequestModel(
-            1,10,false,null
+            1, 10, false, null
         )
+    }
+
+    override fun inject() {
+        DaggerMainActivityComponent.builder()
+            .rootModule(RootModule(Application.getInstance()))
+            .build()
+            .inject(this)
     }
 
 }

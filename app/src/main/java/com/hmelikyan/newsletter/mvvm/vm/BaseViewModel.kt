@@ -4,10 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.hmelikyan.newsletter.data.root.UIState
 import com.hmelikyan.newsletter.root.shared.utils.SingleLiveData
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
 open class BaseViewModel : ViewModel(), CoroutineScope {
@@ -23,6 +20,8 @@ open class BaseViewModel : ViewModel(), CoroutineScope {
     override val coroutineContext: CoroutineContext
         get() = Job() + Dispatchers.Default
 
+    protected open fun inject() {}
+
     fun CoroutineScope.launchIO(block: suspend () -> Unit) {
         launch(context = Dispatchers.IO) { block() }
     }
@@ -34,5 +33,4 @@ open class BaseViewModel : ViewModel(), CoroutineScope {
     fun CoroutineScope.launchDefault(block: suspend () -> Unit) {
         launch(context = Dispatchers.Default) { block() }
     }
-
 }

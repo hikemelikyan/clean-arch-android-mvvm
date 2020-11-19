@@ -2,16 +2,15 @@ package com.hmelikyan.newsletter.data.root
 
 import android.content.Context
 import com.hmelikyan.newsletter.data.model.responseModels.root.Response
+import com.hmelikyan.newsletter.root.di.ApplicationContext
 import com.hmelikyan.newsletter.root.shared.utils.NetworkConnectivityChecker
-import dagger.hilt.android.qualifiers.ApplicationContext
 import retrofit2.HttpException
 import javax.inject.Inject
 
 class NetworkHelperImpl
 @Inject
 constructor(
-    @ApplicationContext
-    private val context: Context,
+    @ApplicationContext private val context: Context,
     private val connectivityChecker: NetworkConnectivityChecker
 ) : NetworkHelper {
 

@@ -18,4 +18,6 @@ sealed class Commands {
      * main activity
      * */
     class TestViewCommand(val list: List<NotificationDomain>?) : ViewCommand
+    class ShowLoadingViewCommand() : ViewCommand
+
 }

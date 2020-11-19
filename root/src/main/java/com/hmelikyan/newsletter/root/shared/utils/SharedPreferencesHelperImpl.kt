@@ -4,12 +4,13 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import dagger.hilt.android.qualifiers.ApplicationContext
+import com.hmelikyan.newsletter.root.di.ApplicationContext
 import javax.inject.Inject
 
 class SharedPreferencesHelperImpl
-@Inject constructor(
-    @ApplicationContext context: Context
+@Inject
+constructor(
+    @ApplicationContext private val context: Context
 ) : SharedPreferencesHelper {
 
     companion object {
@@ -53,7 +54,7 @@ class SharedPreferencesHelperImpl
     }
 
     override fun getFirebaseToken(): String? {
-        return preferences.getString(FIREBASE_TOKEN,null)
+        return preferences.getString(FIREBASE_TOKEN, null)
     }
 
 }

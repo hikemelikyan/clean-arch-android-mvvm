@@ -26,9 +26,15 @@ abstract class BaseActivityMVVM<VB : ViewBinding, VM : BaseViewModel> : BaseActi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = inflate(layoutInflater)
-        _viewModel.viewCommands.observe(this){
+        _viewModel.viewCommands.observe(this) {
             proceedInternalCommands(it)
         }
+        setContentView(StateLayout.create(this) {
+            withComponentActivity(this@BaseActivityMVVM)
+            withContent(_binding.root)
+            withStateListener(_viewModel.uiState)
+            attach()
+        })
     }
 
     private fun proceedInternalCommands(command: ViewCommand) {
@@ -39,6 +45,7 @@ abstract class BaseActivityMVVM<VB : ViewBinding, VM : BaseViewModel> : BaseActi
             else -> proceedViewCommand(command)
         }
     }
+
     protected abstract fun proceedViewCommand(command: ViewCommand)
 
 }
