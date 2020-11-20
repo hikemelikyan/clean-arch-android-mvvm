@@ -34,17 +34,12 @@ constructor(
         return pb.proceed()
     }
 
-    private inner class PagingBuilder<I : PaginationRequestModel, O : PaginationResponseModel<T>, T : Any> :
-        NetworkHelper.PagingBuilder<I, O, T>() {
+    private inner class PagingBuilder<I : PaginationRequestModel, O : PaginationResponseModel<T>, T : Any> : NetworkHelper.PagingBuilder<I, O, T>() {
         private var _model: I? = null
         private var _action: (suspend (I) -> Response<O>)? = null
 
         override infix fun withModel(model: I) {
             _model = model
-        }
-
-        private fun createDefaultPagingConfig(): PagingConfig {
-            return PagingConfig(20, 5, false, 20)
         }
 
         override fun withAction(action: suspend (I) -> Response<O>) {
@@ -55,6 +50,10 @@ constructor(
             return Pager(createDefaultPagingConfig()) {
                 Paginator(Pair(_model!!, _action!!))
             }.flow
+        }
+
+        private fun createDefaultPagingConfig(): PagingConfig {
+            return PagingConfig(20, 5, false, 20)
         }
     }
 
@@ -95,7 +94,9 @@ constructor(
                 val request = modelAndRequestMediator.second
                 model.pageSize = params.loadSize
                 model.pageNumber = params.key?.let { if (it == 0) 1 else it } ?: 1
+
                 val result = callInternal { request(model) }
+
                 return LoadResult.Page(
                     data = if (result?.data == null) emptyList() else result.data,
                     prevKey = if (model.pageNumber == 1) null else model.pageNumber - 1,

@@ -27,17 +27,18 @@ class ResultFactoryImpl @Inject constructor() : ResultFactory {
     override suspend fun <T> getListResult(action: suspend () -> List<T>?): Flow<Result<List<T>>> {
         return flow {
             emit(Result.makeLoadingResult())
-            try {
-                val result = action()
-                if (result.isNullOrEmpty()) {
-                    emit(Result.makeEmptyResult<List<T>>(null))
-                } else {
-                    emit(Result.makeSuccessResult(result))
-                }
-            } catch (e: ApiException) {
-                emit(Result.makeErrorResult<List<T>>(e.state, e.message, e))
-            } catch (e: Exception) {
-                emit(Result.makeErrorResult<List<T>>(UIState.INTERNAL_ERROR))
+
+            val result = action()
+            if (result.isNullOrEmpty()) {
+                emit(Result.makeEmptyResult<List<T>>(null))
+            } else {
+                emit(Result.makeSuccessResult(result))
+            }
+        }.catch {
+            if (it is ApiException) {
+                emit(Result.makeErrorResult(it.state, it.message, it))
+            } else {
+                emit(Result.makeErrorResult(UIState.INTERNAL_ERROR))
             }
         }
     }
@@ -54,20 +55,8 @@ class ResultFactoryImpl @Inject constructor() : ResultFactory {
             } catch (e: ApiException) {
                 offer(Result.makeErrorResult<PagingData<T>>(e.state, e.message, e))
             } catch (e: Exception) {
-                offer(Result.makeErrorResult<PagingData<T>>(UIState.INTERNAL_ERROR,error = e))
+                offer(Result.makeErrorResult<PagingData<T>>(UIState.INTERNAL_ERROR, error = e))
             }
-        } /*ConflatedBroadcastChannel<Result<PagingData<T>>>().apply {
-            send(Result.makeLoadingResult())
-            try {
-                val result = action()
-                result?.collectLatest {
-                    send(Result.makeSuccessResult(it))
-                }
-            } catch (e: ApiException) {
-                send(Result.makeErrorResult(e.state, e.message, e))
-            } catch (e: Exception) {
-                send(Result.makeErrorResult(UIState.INTERNAL_ERROR,error = e))
-            }
-        }.asFlow()*/
+        }
     }
 }

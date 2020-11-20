@@ -4,7 +4,6 @@ import androidx.paging.PagingData
 import com.hmelikyan.newsletter.data.model.requestModels.PaginationRequestModel
 import com.hmelikyan.newsletter.data.model.responseModels.root.PaginationResponseModel
 import com.hmelikyan.newsletter.data.model.responseModels.root.Response
-import com.hmelikyan.newsletter.data.model.responseModels.root.ResponseModel
 import kotlinx.coroutines.flow.Flow
 
 
