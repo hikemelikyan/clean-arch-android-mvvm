@@ -17,6 +17,7 @@ buildscript {
         def material_version = '1.3.0-alpha03'
         def legacy_version = '1.0.0'
         def recycler_version = '1.1.0'
+        def pagination_version = '3.0.0-alpha08'
 
         thirdPartyLibraries = [
                 kotlin                      :"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
@@ -38,6 +39,8 @@ buildscript {
 
                 navigation                  :"androidx.navigation:navigation-fragment-ktx:$navigationVersion",
                 navigation_ui               :"androidx.navigation:navigation-ui-ktx:$navigationVersion",
+
+                pagination_library          :"androidx.paging:paging-runtime:$pagination_version",
 
                 glide                       :"com.github.bumptech.glide:glide:$glideVersion",
                 glideOkHttp3                :"com.github.bumptech.glide:okhttp3-integration:$glideVersion",

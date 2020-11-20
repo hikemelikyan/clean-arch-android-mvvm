@@ -11,13 +11,13 @@ data class Result<R>(
         fun <R> makeSuccessResult(data: R) =
             Result(UIState.SUCCESS, data, null, null)
 
-        inline fun <reified E> makeErrorResult(state: UIState, msg: String? = null, error: Throwable? = null) =
+        fun <E> makeErrorResult(state: UIState, msg: String? = null, error: Throwable? = null) =
             Result<E>(state, null, msg, error)
 
         inline fun <reified E> makeEmptyResult(message: String? = null) =
             Result(UIState.EMPTY, null as E, message, null)
 
-        inline fun <reified L> makeLoadingResult(message: String? = null) =
+        fun <L> makeLoadingResult(message: String? = null) =
             Result<L>(UIState.LOADING, null, message, null)
 
     }

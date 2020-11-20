@@ -1,11 +1,13 @@
 package com.hmelikyan.newsletter.ui.mainActivity
 
+import android.util.Log
 import com.hmelikyan.newsletter.Application
 import com.hmelikyan.newsletter.data.model.requestModels.GetNotificationsListRequestModel
 import com.hmelikyan.newsletter.data.root.UIState
 import com.hmelikyan.newsletter.domain.useCase.GetNotificationsListUseCase
 import com.hmelikyan.newsletter.mvvm.vm.BaseViewModel
 import com.hmelikyan.newsletter.root.di.RootModule
+import com.hmelikyan.newsletter.root.shared.utils.SharedPreferencesHelper
 import com.hmelikyan.newsletter.ui.commands.Commands
 import com.hmelikyan.newsletter.ui.mainActivity.di.DaggerMainActivityComponent
 import kotlinx.coroutines.flow.collect
@@ -15,6 +17,9 @@ class MainViewModel : BaseViewModel() {
 
     @Inject
     lateinit var getListUseCase: GetNotificationsListUseCase
+
+    @Inject
+    lateinit var mShared:SharedPreferencesHelper
 
     init {
         inject()
@@ -42,8 +47,21 @@ class MainViewModel : BaseViewModel() {
                         _viewCommands.postValue(Commands.TestViewCommand(it.data))
                     }
                     UIState.NETWORK_ERROR -> {
-                        _viewCommands.postValue(Commands.ShowMessageTextViewCommand(it.msg.toString()))
+                        _viewCommands.postValue(Commands.NetworkErrorViewCommand())
                     }
+                }
+            }
+        }
+    }
+
+    fun getList(){
+        launchDefault {
+            val response = getListUseCase.getNotificationsList(getDefaultModel())
+            response.collect {
+                Log.d("UIState", "getList: ${it.uiState.name}")
+                _uiState.postValue(it.uiState)
+                it.data?.let {
+                    _viewCommands.postValue(Commands.PagingViewCommand(it))
                 }
             }
         }

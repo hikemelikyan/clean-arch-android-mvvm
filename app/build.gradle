@@ -62,6 +62,8 @@ dependencies {
     implementation thirdPartyLibraries.navigation
     implementation thirdPartyLibraries.navigation_ui
 
+    implementation thirdPartyLibraries.pagination_library
+
     implementation thirdPartyLibraries.glide
     implementation thirdPartyLibraries.glideOkHttp3
     implementation thirdPartyLibraries.glideCompiler

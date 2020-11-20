@@ -1,7 +1,7 @@
 package com.hmelikyan.newsletter.data.model.requestModels
 
 open class PaginationRequestModel(
-    val pageNumber: Int,
-    val pageSize: Int,
+    var pageNumber: Int,
+    var pageSize: Int,
     val descending: Boolean = true,
 )

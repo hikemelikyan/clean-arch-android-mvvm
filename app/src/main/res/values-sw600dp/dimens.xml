@@ -1,0 +1,20 @@
+<resources>
+    <dimen name="text_size_normal">17sp</dimen>
+    <dimen name="text_size_m">19sp</dimen>
+    <dimen name="text_size_l">22sp</dimen>
+    <dimen name="text_size_xl">25sp</dimen>
+    <dimen name="text_size_xxl">31sp</dimen>
+    <dimen name="text_size_xxxl">43sp</dimen>
+    <dimen name="text_size_s">15sp</dimen>
+    <dimen name="text_size_xs">13sp</dimen>
+
+    <dimen name="vertical_margin">120dp</dimen>
+    <dimen name="horizontal_margin">100dp</dimen>
+    <dimen name="profile_details_margin_top">60dp</dimen>
+
+    <dimen name="logo_height">120dp</dimen>
+    <dimen name="input_layouts_height">50dp</dimen>
+    <dimen name="input_layout_blur_height">70dp</dimen>
+    <dimen name="buttons_height">50dp</dimen>
+
+</resources>

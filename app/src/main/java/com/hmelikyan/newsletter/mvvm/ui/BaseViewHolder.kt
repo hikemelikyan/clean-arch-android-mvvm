@@ -8,5 +8,5 @@ abstract class BaseViewHolder<VB : ViewBinding, DATA : Any>(binding: VB) : Recyc
 
     protected val holderContext: Context = binding.root.context
 
-    protected abstract fun VB.bind(data: DATA)
+    abstract fun bind(data: DATA)
 }

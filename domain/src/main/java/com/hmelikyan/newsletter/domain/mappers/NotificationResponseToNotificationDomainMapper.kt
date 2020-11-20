@@ -5,7 +5,7 @@ import com.hmelikyan.newsletter.domain.entities.NotificationDomain
 import com.hmelikyan.newsletter.root.shared.mapperBase.Mapper
 
 object NotificationResponseToNotificationDomainMapper:Mapper<NotificationResponseModel,NotificationDomain> {
-    override suspend fun invoke(input: NotificationResponseModel): NotificationDomain {
+    override fun invoke(input: NotificationResponseModel): NotificationDomain {
         return with(input){
             NotificationDomain(
                 id = id ?: 0,

@@ -47,6 +47,8 @@ dependencies {
     implementation thirdPartyLibraries.core_ktx
     implementation thirdPartyLibraries.appcompat
     implementation thirdPartyLibraries.fragment_ktx
+    implementation thirdPartyLibraries.pagination_library
+
     testImplementation testDependencies.junit
     androidTestImplementation androidTestsDependencies.test_runner
     androidTestImplementation androidTestsDependencies.espresso_core

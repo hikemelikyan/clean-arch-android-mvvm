@@ -9,16 +9,18 @@ import com.hmelikyan.newsletter.databinding.ActivityMainBinding
 import com.hmelikyan.newsletter.mvvm.ui.BaseActivityMVVM
 import com.hmelikyan.newsletter.mvvm.vm.ViewCommand
 import com.hmelikyan.newsletter.ui.commands.Commands
+import com.hmelikyan.newsletter.ui.mainActivity.adapters.TestAdapter
 
 class MainActivity : BaseActivityMVVM<ActivityMainBinding,MainViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(mBinding.toolbar)
-        mViewModel.getTest()
+        mViewModel.getList()
         mBinding.fab.setOnClickListener {
-            mViewModel.getTest()
+            mViewModel.getList()
         }
+        mBinding.rvTest.adapter = TestAdapter()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -42,6 +44,7 @@ class MainActivity : BaseActivityMVVM<ActivityMainBinding,MainViewModel>() {
         when(command){
             is Commands.TestViewCommand -> showToast(command.list?.size.toString())
             is Commands.ShowLoadingViewCommand -> showToast("Loading")
+            is Commands.PagingViewCommand -> ( mBinding.rvTest.adapter as TestAdapter).submitData(lifecycle, command.list)
         }
     }
 
