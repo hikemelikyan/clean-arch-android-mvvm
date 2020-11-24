@@ -16,6 +16,7 @@ class Application : Application() {
 
         fun getInstance() = mInstance
     }
+
     private lateinit var appComponent: AppComponent
 
     @Inject

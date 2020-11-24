@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/window_background_gray</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -15,5 +16,36 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="PageContentStyle">
+        <item name="android:paddingStart">@dimen/view_size_3</item>
+        <item name="android:paddingEnd">@dimen/view_size_3</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:clipChildren">false</item>
+    </style>
+
+    <style name="BaseBtnWidgetStyle" >
+        <item name="android:paddingStart">@dimen/view_size_3</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingEnd">@dimen/view_size_3</item>
+        <item name="android:paddingTop">@dimen/view_size_3</item>
+        <item name="android:paddingBottom">@dimen/view_size_3</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/text_size_m</item>
+    </style>
+
+    <style name="SignInEditStyle" parent="BaseBtnWidgetStyle">
+        <item name="android:background">@drawable/bcg_sign_in_edit_text_bordered</item>
+        <item name="android:textColorHint">@color/edit_text_hint_color</item>
+        <item name="android:gravity">start|center_vertical</item>
+    </style>
+
+    <style name="SignInBorderedButtonStyle" parent="BaseBtnWidgetStyle">
+        <item name="android:background">@drawable/bcg_ripple_trasnaparent_rounded_10_bordered</item>
+    </style>
+
+    <style name="GreenButtonStyle" parent="BaseBtnWidgetStyle">
+        <item name="android:background">@drawable/bcg_ripple_green_rounded_10</item>
+    </style>
 
 </resources>

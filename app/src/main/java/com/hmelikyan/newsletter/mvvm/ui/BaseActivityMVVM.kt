@@ -12,7 +12,7 @@ import com.hmelikyan.newsletter.ui.commands.Commands
 abstract class BaseActivityMVVM<VB : ViewBinding, VM : BaseViewModel> : BaseActivity() {
 
     private lateinit var _binding: VB
-    protected val mBinding: VB
+    private val mBinding: VB
         get() = _binding
 
     private val _viewModel by lazy { ViewModelProvider.NewInstanceFactory().create(viewModelType) }
@@ -23,9 +23,12 @@ abstract class BaseActivityMVVM<VB : ViewBinding, VM : BaseViewModel> : BaseActi
 
     protected abstract val inflate: (LayoutInflater) -> VB
 
+    protected abstract fun initView(binding:VB,viewModel:VM)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = inflate(layoutInflater)
+        initView(_binding,_viewModel)
         _viewModel.viewCommands.observe(this) {
             proceedInternalCommands(it)
         }

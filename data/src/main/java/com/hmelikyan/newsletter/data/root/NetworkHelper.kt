@@ -18,14 +18,15 @@ interface NetworkHelper {
     @ApiRequest
     suspend fun <R> call(action: suspend () -> Response<R>): R?
 
-    @PagingRequest
-    suspend fun <I : PaginationRequestModel, O : PaginationResponseModel<T>, T : Any> paginate(
-        action: PagingBuilder<I,O,T>.() -> Unit
+    suspend fun <I : PaginationRequestModel, O : PaginationResponseModel<T>, T : Any> withModel(
+        model:I,
+        action: PagingBuilder<I,O,T>.() -> PagingBuilder<I,O,T>
     ): Flow<PagingData<T>>
 
     abstract class PagingBuilder<I : PaginationRequestModel, O : PaginationResponseModel<T>, T : Any>{
-        abstract fun withModel(model:I)
-        abstract fun withAction(action: suspend (I) -> Response<O>)
+
+        @PagingRequest
+        abstract fun paginate(action: suspend (I) -> Response<O>) : PagingBuilder<I,O,T>
         internal abstract fun proceed():Flow<PagingData<T>>
     }
 

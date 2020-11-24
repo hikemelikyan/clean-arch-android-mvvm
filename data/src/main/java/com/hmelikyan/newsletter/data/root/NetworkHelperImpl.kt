@@ -26,35 +26,15 @@ constructor(
 
     override suspend fun <R> call(action: suspend () -> Response<R>): R? = callInternal { action() }
 
-    override suspend fun <I : PaginationRequestModel, O : PaginationResponseModel<T>, T : Any> paginate(
-        action: NetworkHelper.PagingBuilder<I, O, T>.() -> Unit
+    override suspend fun <I : PaginationRequestModel, O : PaginationResponseModel<T>, T : Any> withModel(
+        model:I,
+        action: NetworkHelper.PagingBuilder<I, O, T>.() -> NetworkHelper.PagingBuilder<I,O,T>
     ): Flow<PagingData<T>> {
-        val pb = PagingBuilder<I, O, T>()
-        action(pb)
+        val pb:PagingBuilderImpl<I,O,T> = PagingBuilderImpl<I, O, T>().apply {
+            action(this)
+            withModel(model)
+        }
         return pb.proceed()
-    }
-
-    private inner class PagingBuilder<I : PaginationRequestModel, O : PaginationResponseModel<T>, T : Any> : NetworkHelper.PagingBuilder<I, O, T>() {
-        private var _model: I? = null
-        private var _action: (suspend (I) -> Response<O>)? = null
-
-        override infix fun withModel(model: I) {
-            _model = model
-        }
-
-        override fun withAction(action: suspend (I) -> Response<O>) {
-            _action = action
-        }
-
-        override fun proceed(): Flow<PagingData<T>> {
-            return Pager(createDefaultPagingConfig()) {
-                Paginator(Pair(_model!!, _action!!))
-            }.flow
-        }
-
-        private fun createDefaultPagingConfig(): PagingConfig {
-            return PagingConfig(20, 5, false, 20)
-        }
     }
 
     private suspend fun <R> callInternal(action: suspend () -> Response<R>): R? {
@@ -84,33 +64,51 @@ constructor(
         }
     }
 
-    private inner class Paginator<I : PaginationRequestModel, T : Any, O : PaginationResponseModel<T>>(
-        private val modelAndRequestMediator: Pair<I, suspend (I) -> Response<O>>
-    ) : PagingSource<Int, T>() {
+    private inner class PagingBuilderImpl<I : PaginationRequestModel, O : PaginationResponseModel<T>, T : Any> : NetworkHelper.PagingBuilder<I, O, T>() {
+        private var _model: I? = null
+        private var _action: (suspend (I) -> Response<O>)? = null
 
-        override suspend fun load(params: LoadParams<Int>): LoadResult<Int, T> {
-            try {
-                val model = modelAndRequestMediator.first
-                val request = modelAndRequestMediator.second
-                model.pageSize = params.loadSize
-                model.pageNumber = params.key?.let { if (it == 0) 1 else it } ?: 1
+        fun withModel(model:I) = run { _model = model }
 
-                val result = callInternal { request(model) }
+        override fun paginate(action: suspend (I) -> Response<O>) = apply { _action = action }
 
-                return LoadResult.Page(
-                    data = if (result?.data == null) emptyList() else result.data,
-                    prevKey = if (model.pageNumber == 1) null else model.pageNumber - 1,
-                    nextKey = when {
-                        result?.data == null || result.pageCount == model.pageNumber -> null
-                        else -> {
-                            model.pageNumber + 1
+        override fun proceed(): Flow<PagingData<T>> {
+            return Pager(createDefaultPagingConfig()) {
+                Paginator(Pair(_model!!, _action!!))
+            }.flow
+        }
+
+        private fun createDefaultPagingConfig(): PagingConfig {
+            return PagingConfig(20, 5, false, 20)
+        }
+
+        private inner class Paginator<I : PaginationRequestModel, T : Any, O : PaginationResponseModel<T>>(
+            private val modelAndRequestMediator: Pair<I, suspend (I) -> Response<O>>
+        ) : PagingSource<Int, T>() {
+
+            override suspend fun load(params: LoadParams<Int>): LoadResult<Int, T> {
+                try {
+                    val model = modelAndRequestMediator.first
+                    val request = modelAndRequestMediator.second
+                    model.pageSize = params.loadSize
+                    model.pageNumber = params.key?.let { if (it == 0) 1 else it } ?: 1
+
+                    val result = callInternal { request(model) }
+
+                    return LoadResult.Page(
+                        data = if (result?.data == null) emptyList() else result.data,
+                        prevKey = if (model.pageNumber == 1) null else model.pageNumber - 1,
+                        nextKey = when {
+                            result?.data == null || result.pageCount == model.pageNumber -> null
+                            else -> { model.pageNumber + 1 }
                         }
-                    }
-                )
-            } catch (e: Exception) {
-                return LoadResult.Error(e)
+                    )
+                } catch (e: Exception) {
+                    return LoadResult.Error(e)
+                }
             }
         }
+
     }
 
 }

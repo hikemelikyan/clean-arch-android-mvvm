@@ -56,7 +56,7 @@ abstract class BaseActivity: AppCompatActivity(), IBaseView {
         showToast(resources.getString(resId))
     }
 
-    abstract fun onRetryRequest()
+    open fun onRetryRequest(){}
 
     fun hasPermission(permission: String): Boolean {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED

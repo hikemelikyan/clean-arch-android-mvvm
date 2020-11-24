@@ -1,5 +1,7 @@
 package com.hmelikyan.newsletter.domain.entities
 
+import androidx.recyclerview.widget.DiffUtil
+
 data class NotificationDomain (
     val id: Int,
     val title: String,
@@ -9,4 +11,15 @@ data class NotificationDomain (
     val notificationType: Int,
     val tripId: Int,
     val isTripStarted: Boolean
-)
+){
+    companion object : DiffUtil.ItemCallback<NotificationDomain>(){
+        override fun areItemsTheSame(oldItem: NotificationDomain, newItem: NotificationDomain): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: NotificationDomain, newItem: NotificationDomain): Boolean {
+            return oldItem.date == newItem.date
+        }
+
+    }
+}

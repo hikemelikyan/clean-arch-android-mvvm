@@ -1,4 +1,21 @@
 <resources>
+
+    <dimen name="badge_size">15dp</dimen>
+    <dimen name="view_size_1">6dp</dimen>
+    <dimen name="view_size_2">9dp</dimen>
+    <dimen name="view_size_3">17dp</dimen>
+    <dimen name="view_size_4">24dp</dimen>
+    <dimen name="view_size_5">26dp</dimen>
+    <dimen name="view_size_6">37dp</dimen>
+    <dimen name="view_size_7">48dp</dimen>
+    <dimen name="view_size_8">55dp</dimen>
+    <dimen name="view_size_9">65dp</dimen>
+    <dimen name="view_size_10">90dp</dimen>
+    <dimen name="view_size_11">110dp</dimen>
+    <dimen name="view_size_12">140dp</dimen>
+    <dimen name="view_size_13">170dp</dimen>
+    <dimen name="view_size_14">200dp</dimen>
+
     <dimen name="text_size_normal">14sp</dimen>
     <dimen name="text_size_m">16sp</dimen>
     <dimen name="text_size_l">19sp</dimen>
