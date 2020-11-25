@@ -14,4 +14,6 @@
     <string name="send_code">Послать код</string>
     <string name="sign_up">Зарегистрироваться</string>
     <string name="sign_in">Войти в систему</string>
+    <string name="basketball">Баскетбол</string>
+    <string name="nearest_event">ближайшее событие</string>
 </resources>

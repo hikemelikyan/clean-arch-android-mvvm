@@ -62,12 +62,12 @@ class AuthActivityViewModel : BaseViewModel() {
             _items.postValue(list)
             switchUIState(UIState.SUCCESS)
 
-            while (true){
+            /*while (true){
                 delay(1000)
 
                 _items.postValue(list.shuffled())
 
-            }
+            }*/
         }
     }
 

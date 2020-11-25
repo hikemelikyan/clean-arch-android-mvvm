@@ -2,6 +2,8 @@ package com.hmelikyan.newsletter.ui.screens.authorizationActivity.adapters
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
+import com.bumptech.glide.Glide
+import com.hmelikyan.newsletter.R
 import com.hmelikyan.newsletter.databinding.AdapterCategoryItemBinding
 import com.hmelikyan.newsletter.domain.entities.NotificationDomain
 import com.hmelikyan.newsletter.mvvm.ui.BaseViewHolder
@@ -20,7 +22,17 @@ class CategoriesAdapter: ListAdapter<NotificationDomain, CategoriesAdapter.Categ
     inner class CategoryViewHolder(binding: AdapterCategoryItemBinding) : BaseViewHolder<AdapterCategoryItemBinding, NotificationDomain>(binding) {
         override fun bind(data: NotificationDomain) {
             binding.apply {
-                text.text = data.id.toString()
+                tvCategory.text = data.description
+                tvTime.text = data.id.toString()
+                Glide.with(holderContext)
+                    .load("https://www.talkwalker.com/images/2020/blog-headers/image-analysis.png")
+                    .centerCrop()
+                    .into(image)
+                image.setShadowColor(when(bindingAdapterPosition % 3){
+                    0 -> R.color.alto
+                    1 -> R.color.colorAccent
+                    else -> R.color.pickled_radish
+                })
             }
         }
     }

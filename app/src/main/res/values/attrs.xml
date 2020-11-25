@@ -17,4 +17,22 @@
         <attr name="backgroundDrawable" format="reference" />
         <attr name="backgroundColor" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="CircleShadowImageView">
+        <attr name="roundStyle" format="enum">
+            <enum name="circle" value="0" />
+            <enum name="roundish" value="1" />
+        </attr>
+        <attr name="roundedCorners">
+            <flag name="topLeft" value="1" />
+            <flag name="topRight" value="2" />
+            <flag name="bottomRight" value="4" />
+            <flag name="bottomLeft" value="8" />
+            <flag name="all" value="15" />
+        </attr>
+        <attr name="cornerRadius" format="dimension" />
+        <attr name="shadowColor" format="color" />
+        <attr name="shadowRadius" format="dimension"/>
+    </declare-styleable>
+
 </resources>
