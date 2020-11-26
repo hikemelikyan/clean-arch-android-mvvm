@@ -1,19 +1,16 @@
 package com.hmelikyan.newsletter.mvvm.ui
 
 import android.content.pm.PackageManager
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
-import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import androidx.appcompat.widget.Toolbar
 import com.google.android.material.snackbar.Snackbar
 import com.hmelikyan.newsletter.R
-import com.hmelikyan.newsletter.mvvm.vm.BaseViewModel
-import com.hmelikyan.newsletter.mvvm.vm.ViewCommand
 import com.hmelikyan.newsletter.root.shared.ext.getColorCompat
-import com.hmelikyan.newsletter.ui.commands.Commands
 
-abstract class BaseActivity: AppCompatActivity(), IBaseView {
+abstract class BaseActivity : AppCompatActivity(), IBaseView {
 
     override fun showServerError(message: String) {
         showServerErrorSnackBar(message)
@@ -56,10 +53,16 @@ abstract class BaseActivity: AppCompatActivity(), IBaseView {
         showToast(resources.getString(resId))
     }
 
-    open fun onRetryRequest(){}
+    open fun onRetryRequest() {}
 
     fun hasPermission(permission: String): Boolean {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED
     }
 
+    override fun setSupportActionBar(toolbar: Toolbar?) {
+        super.setSupportActionBar(toolbar)
+        if (toolbar?.background is ColorDrawable) {
+            window.statusBarColor = (toolbar.background as ColorDrawable).color
+        }
+    }
 }

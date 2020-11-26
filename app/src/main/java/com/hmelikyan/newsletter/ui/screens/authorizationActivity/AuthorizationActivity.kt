@@ -7,9 +7,11 @@ import com.hmelikyan.newsletter.mvvm.vm.ViewCommand
 import com.hmelikyan.newsletter.ui.screens.authorizationActivity.adapters.CategoriesAdapter
 
 class AuthorizationActivity :BaseActivityMVVM<ActivityAuthorizationBinding, AuthActivityViewModel>(){
-    private val adapter:CategoriesAdapter by lazy { CategoriesAdapter() }
+    private val adapter:CategoriesAdapter by lazy { CategoriesAdapter(::onItemClick) }
+
     override val viewModelType: Class<AuthActivityViewModel>
         get() = AuthActivityViewModel::class.java
+
     override val inflate: (LayoutInflater) -> ActivityAuthorizationBinding
         get() = ActivityAuthorizationBinding::inflate
 
@@ -20,6 +22,10 @@ class AuthorizationActivity :BaseActivityMVVM<ActivityAuthorizationBinding, Auth
     override fun initView(binding: ActivityAuthorizationBinding, viewModel: AuthActivityViewModel) {
         binding.viewModel = viewModel
         binding.rvCategories.adapter = adapter
+    }
+
+    private fun onItemClick(position:Int){
+        showToast(position.toString())
     }
 
 }

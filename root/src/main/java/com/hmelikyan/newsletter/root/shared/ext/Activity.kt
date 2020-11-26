@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -42,18 +43,18 @@ fun AppCompatActivity.setLightStatusBarWithFullScreen() {
     }
 }
 
-fun AppCompatActivity.setLightStatusBar() {
+fun AppCompatActivity.setLightStatusBar(@ColorRes statusColor:Int = android.R.color.white) {
     window.apply {
         if (Build.VERSION.SDK_INT > 22) {
             decorView.systemUiVisibility = if (Build.VERSION.SDK_INT > 27) {
                 navigationBarColor = ContextCompat.getColor(this@setLightStatusBar, android.R.color.white)
                 navigationBarDividerColor = ContextCompat.getColor(this@setLightStatusBar, R.color.divider_color)
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
             } else {
                 navigationBarColor = ContextCompat.getColor(this@setLightStatusBar, android.R.color.black)
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             }
-            statusBarColor = ContextCompat.getColor(this@setLightStatusBar, android.R.color.white)
+            statusBarColor = ContextCompat.getColor(this@setLightStatusBar, statusColor)
         } else {
             statusBarColor = ContextCompat.getColor(this@setLightStatusBar, android.R.color.black)
         }

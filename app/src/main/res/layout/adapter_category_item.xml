@@ -59,10 +59,9 @@
         android:layout_gravity="center_horizontal"
         android:background="@android:color/transparent"
         android:elevation="20dp"
-        app:roundStyle="roundish"
-        app:roundedCorners="all"
+        app:roundStyle="circle"
         app:shadowRadius="10dp"
-        app:cornerRadius="25dp"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        android:scaleType="centerCrop"
+        app:shadowColor="@color/image_shadow_gray" />
 
 </FrameLayout>

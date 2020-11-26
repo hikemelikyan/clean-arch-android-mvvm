@@ -3,7 +3,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/dark_blue</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/window_background_gray</item>
     </style>
@@ -24,7 +24,7 @@
         <item name="android:clipChildren">false</item>
     </style>
 
-    <style name="BaseBtnWidgetStyle" >
+    <style name="BaseBtnWidgetStyle">
         <item name="android:paddingStart">@dimen/view_size_3</item>
         <item name="android:gravity">center</item>
         <item name="android:paddingEnd">@dimen/view_size_3</item>
@@ -38,6 +38,18 @@
         <item name="android:background">@drawable/bcg_sign_in_edit_text_bordered</item>
         <item name="android:textColorHint">@color/edit_text_hint_color</item>
         <item name="android:gravity">start|center_vertical</item>
+    </style>
+
+    <style name="SupportEditStyle" parent="BaseBtnWidgetStyle">
+        <item name="android:textColorHint">@color/support_edit_text_hint_color</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:background">@null</item>
+        <item name="android:paddingStart">@dimen/view_size_2</item>
+        <item name="android:paddingEnd">@dimen/view_size_2</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@android:color/white</item>
     </style>
 
     <style name="SignInBorderedButtonStyle" parent="BaseBtnWidgetStyle">

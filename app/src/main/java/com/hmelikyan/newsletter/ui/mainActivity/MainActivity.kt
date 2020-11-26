@@ -8,13 +8,9 @@ import com.hmelikyan.newsletter.mvvm.ui.BaseActivityMVVM
 import com.hmelikyan.newsletter.mvvm.vm.ViewCommand
 import com.hmelikyan.newsletter.ui.commands.Commands
 import com.hmelikyan.newsletter.ui.screens.authorizationActivity.AuthorizationActivity
+import com.hmelikyan.newsletter.ui.screens.supportChatAdapter.SupportChatActivity
 
-class MainActivity : BaseActivityMVVM<ActivityMainBinding,MainViewModel>() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mViewModel.getTest()
-    }
+class MainActivity : BaseActivityMVVM<ActivityMainBinding, MainViewModel>() {
 
     override val viewModelType: Class<MainViewModel>
         get() = MainViewModel::class.java
@@ -22,7 +18,7 @@ class MainActivity : BaseActivityMVVM<ActivityMainBinding,MainViewModel>() {
         get() = ActivityMainBinding::inflate
 
     override fun proceedViewCommand(command: ViewCommand) {
-        when(command){
+        when (command) {
             is Commands.TestViewCommand -> showToast(command.list?.size.toString())
             is Commands.ShowLoadingViewCommand -> showToast("Loading")
         }
@@ -33,7 +29,7 @@ class MainActivity : BaseActivityMVVM<ActivityMainBinding,MainViewModel>() {
             startActivity(Intent(this, AuthorizationActivity::class.java))
         }
         binding.btnSignIn.setOnClickListener {
-            showToast("Test")
+            startActivity(Intent(this, SupportChatActivity::class.java))
         }
         binding.btnSignUp.setOnClickListener {
             showToast("Test")

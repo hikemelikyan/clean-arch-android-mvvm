@@ -23,6 +23,7 @@ class MainViewModel : BaseViewModel() {
 
     init {
         inject()
+        switchUIState(UIState.SUCCESS)
     }
 
     fun getTest() {
