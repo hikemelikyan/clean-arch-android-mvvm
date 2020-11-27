@@ -15,11 +15,9 @@ import com.hmelikyan.newsletter.domain.entities.NotificationDomain
 import com.hmelikyan.newsletter.mvvm.ui.BaseListAdapter
 import com.hmelikyan.newsletter.mvvm.ui.BaseViewHolder
 import com.hmelikyan.newsletter.root.shared.ext.dpToPx
+import com.hmelikyan.newsletter.shared.util.JumpScrollListener
 
-class CategoriesAdapterHorizontal :
-    BaseListAdapter<NotificationDomain, AdapterCategoryItemHorizontalBinding>(NotificationDomain.Companion) {
-
-    private var isTrackingStarted = false
+class CategoriesAdapterHorizontal : BaseListAdapter<NotificationDomain, AdapterCategoryItemHorizontalBinding>(NotificationDomain.Companion) , JumpScrollListener.JumpAdapter{
 
     private val translateProvider: TranslateProvider by lazy { TranslateProvider() }
 
@@ -54,8 +52,8 @@ class CategoriesAdapterHorizontal :
         }
     }
 
-    fun invalidate() {
-        ValueAnimator.ofFloat(translateProvider.translationY, 0f)
+    override fun invalidate(lastValue:Float) {
+        ValueAnimator.ofFloat(lastValue, 0f)
             .apply {
                 interpolator = BounceInterpolator()
                 addUpdateListener {
@@ -65,12 +63,11 @@ class CategoriesAdapterHorizontal :
             }.start()
     }
 
-    fun update(value: Float) {
+    override fun update(value: Float) {
         translateProvider.translationY = when {
             value > 1 -> 15.dpToPx().toFloat()
-            value < 0 -> 0f
+            value < 0.5 -> 0f
             else -> value * 15.dpToPx()
         }
-        Log.d("translationY", "update: ${translateProvider.translationY} + $value")
     }
 }
