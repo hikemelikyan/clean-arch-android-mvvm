@@ -2,6 +2,7 @@ package com.hmelikyan.newsletter.ui.screens.supportChatAdapter.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.DiffUtil
 import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
@@ -21,22 +22,47 @@ private const val TYPE_4 = 4
 private const val TYPE_5 = 5
 private const val TYPE_6 = 6
 
-class SupportChatAdapter : BaseMultiTypeListAdapter<Any, ViewBinding>(object : DiffUtil.ItemCallback<Any>(){
-    override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean {
-        return false
-    }
+class SupportChatAdapter :
+    BaseMultiTypeListAdapter<Any, ViewBinding>(object : DiffUtil.ItemCallback<Any>() {
+        override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean {
+            return try {
+                check(oldItem is SentMessageModel && newItem is SentMessageModel)
+                check(oldItem is ReceivedMessageModel && newItem is ReceivedMessageModel)
+                check(oldItem is SentPhotoModel && newItem is SentPhotoModel)
+                check(oldItem is ReceivedPhotoModel && newItem is ReceivedPhotoModel)
+                true
+            } catch (e: Exception) {
+                false
+            }
+        }
 
-    override fun areContentsTheSame(oldItem: Any, newItem: Any): Boolean {
-        return false
-    }
-}) {
+        override fun areContentsTheSame(oldItem: Any, newItem: Any): Boolean {
+            try {
+                if (oldItem is SentMessageModel && newItem is SentMessageModel)
+                    return oldItem.isMine == newItem.isMine
+                if (oldItem is ReceivedMessageModel && newItem is ReceivedMessageModel)
+                    return oldItem.value == newItem.value
+                if (oldItem is SentPhotoModel && newItem is SentPhotoModel)
+                    return oldItem.url == newItem.url
+                if (oldItem is ReceivedPhotoModel && newItem is ReceivedPhotoModel)
+                    return oldItem.url == newItem.url
+                return false
+            } catch (e: Exception) {
+                return false
+            }
+        }
+    }) {
 
-    override fun inflate(inflater: LayoutInflater, parent: ViewGroup?, attachToParent: Boolean): Map<Int, ViewBinding> {
+    override fun inflate(
+        inflater: LayoutInflater,
+        parent: ViewGroup?,
+        attachToParent: Boolean
+    ): Map<Int, ViewBinding> {
         return mapOf(
-            TYPE_1 to AdapterReceivedMessageItemBinding.inflate(inflater,parent,attachToParent),
-            TYPE_2 to AdapterSentMessageItemBinding.inflate(inflater,parent,attachToParent),
-            TYPE_3 to AdapterSentImageItemBinding.inflate(inflater,parent,attachToParent),
-            TYPE_4 to AdapterReceivedImageItemBinding.inflate(inflater,parent,attachToParent),
+            TYPE_1 to AdapterSentMessageItemBinding.inflate(inflater, parent, attachToParent),
+            TYPE_2 to AdapterReceivedMessageItemBinding.inflate(inflater, parent, attachToParent),
+            TYPE_3 to AdapterSentImageItemBinding.inflate(inflater, parent, attachToParent),
+            TYPE_4 to AdapterReceivedImageItemBinding.inflate(inflater, parent, attachToParent),
 //            TYPE_5 to AdapterReceivedImageItemBinding.inflate(inflater,parent,attachToParent),
 //            TYPE_6 to AdapterReceivedImageItemBinding.inflate(inflater,parent,attachToParent)
         )
@@ -57,14 +83,22 @@ class SupportChatAdapter : BaseMultiTypeListAdapter<Any, ViewBinding>(object : D
     override fun bindActions(): Map<Int, BaseViewHolder<ViewBinding, Any>.(data: Any) -> Unit> {
         return mapOf(
             TYPE_1 to {
-                binding as AdapterReceivedMessageItemBinding
+                binding as AdapterSentMessageItemBinding
                 it as SentMessageModel
-                binding.text.text = holderContext.getString(R.string.lorem)
+                binding.apply {
+                    root.animation = AnimationUtils.loadAnimation(root.context, R.anim.anim_slide_in)
+                    root.animate()
+                    text.text = holderContext.getString(R.string.lorem)
+                }
             },
             TYPE_2 to {
-                binding as AdapterSentMessageItemBinding
+                binding as AdapterReceivedMessageItemBinding
                 it as ReceivedMessageModel
-                binding.text.text = holderContext.getString(R.string.lorem)
+                binding.apply {
+                    root.animation = AnimationUtils.loadAnimation(root.context, R.anim.anim_slide_in)
+                    root.animate()
+                    text.text = holderContext.getString(R.string.lorem)
+                }
             },
             TYPE_3 to {
                 binding as AdapterSentImageItemBinding
@@ -72,6 +106,10 @@ class SupportChatAdapter : BaseMultiTypeListAdapter<Any, ViewBinding>(object : D
                 Glide.with(holderContext)
                     .load(it.url)
                     .into(binding.image)
+                binding.apply {
+                    root.animation = AnimationUtils.loadAnimation(root.context, R.anim.anim_slide_in)
+                    root.animate()
+                }
             },
             TYPE_4 to {
                 binding as AdapterReceivedImageItemBinding
@@ -79,6 +117,10 @@ class SupportChatAdapter : BaseMultiTypeListAdapter<Any, ViewBinding>(object : D
                 Glide.with(holderContext)
                     .load(it.url)
                     .into(binding.image)
+                binding.apply {
+                    root.animation = AnimationUtils.loadAnimation(root.context, R.anim.anim_slide_in)
+                    root.animate()
+                }
             },
             TYPE_5 to {
                 binding as AdapterReceivedImageItemBinding

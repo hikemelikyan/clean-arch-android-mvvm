@@ -12,4 +12,11 @@ object BindingAdapters {
         val adapter = rv.adapter as CategoriesAdapter
         items.observeForever { adapter.submitList(it) }
     }
+
+    @JvmStatic
+    @BindingAdapter("horizontal_category_items")
+    fun setHorizontalAdapterItems(rv:RecyclerView,items: LiveData<List<NotificationDomain>>){
+        val adapter = rv.adapter as CategoriesAdapterHorizontal
+        items.observeForever { adapter.submitList(it) }
+    }
 }
