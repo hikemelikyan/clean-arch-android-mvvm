@@ -1,14 +1,7 @@
 <resources>
     <string name="app_name">Newsletter</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="oops">Oops</string>
     <string name="phone_number">Номер телефона</string>
     <string name="send_code">Послать код</string>
@@ -20,5 +13,17 @@
     <string name="technical_support">Техническая поддержка</string>
 
     <string name="lorem" translatable="false">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </string>
+    <string name="password">Пароль</string>
+    <string name="hone_number_or_email">Номер телефона или эл. почта</string>
+    <string name="sign_in_to_system">Вход в систему</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="code">Код</string>
+    <string name="next">Далее</string>
+    <string name="email">Электронная почта</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="second_name">Отчество</string>
+    <string name="date_of_birth">Дата рождения</string>
+    <string name="gender">Пол</string>
 
 </resources>

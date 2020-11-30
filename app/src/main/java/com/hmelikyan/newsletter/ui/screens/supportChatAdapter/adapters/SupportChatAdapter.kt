@@ -86,8 +86,6 @@ class SupportChatAdapter :
                 binding as AdapterSentMessageItemBinding
                 it as SentMessageModel
                 binding.apply {
-                    root.animation = AnimationUtils.loadAnimation(root.context, R.anim.anim_slide_in)
-                    root.animate()
                     text.text = holderContext.getString(R.string.lorem)
                 }
             },
@@ -95,8 +93,6 @@ class SupportChatAdapter :
                 binding as AdapterReceivedMessageItemBinding
                 it as ReceivedMessageModel
                 binding.apply {
-                    root.animation = AnimationUtils.loadAnimation(root.context, R.anim.anim_slide_in)
-                    root.animate()
                     text.text = holderContext.getString(R.string.lorem)
                 }
             },
@@ -106,10 +102,6 @@ class SupportChatAdapter :
                 Glide.with(holderContext)
                     .load(it.url)
                     .into(binding.image)
-                binding.apply {
-                    root.animation = AnimationUtils.loadAnimation(root.context, R.anim.anim_slide_in)
-                    root.animate()
-                }
             },
             TYPE_4 to {
                 binding as AdapterReceivedImageItemBinding
@@ -117,10 +109,6 @@ class SupportChatAdapter :
                 Glide.with(holderContext)
                     .load(it.url)
                     .into(binding.image)
-                binding.apply {
-                    root.animation = AnimationUtils.loadAnimation(root.context, R.anim.anim_slide_in)
-                    root.animate()
-                }
             },
             TYPE_5 to {
                 binding as AdapterReceivedImageItemBinding

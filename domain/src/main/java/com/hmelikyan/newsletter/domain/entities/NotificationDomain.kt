@@ -1,6 +1,7 @@
 package com.hmelikyan.newsletter.domain.entities
 
 import androidx.recyclerview.widget.DiffUtil
+import com.hmelikyan.newsletter.data.root.Entity
 
 data class NotificationDomain (
     val id: Int,
@@ -11,7 +12,7 @@ data class NotificationDomain (
     val notificationType: Int,
     val tripId: Int,
     val isTripStarted: Boolean
-){
+):Entity {
     companion object : DiffUtil.ItemCallback<NotificationDomain>(){
         override fun areItemsTheSame(oldItem: NotificationDomain, newItem: NotificationDomain): Boolean {
             return oldItem.id == newItem.id

@@ -1,4 +1,4 @@
-package com.hmelikyan.newsletter.ui.screens.authorizationActivity
+package com.hmelikyan.newsletter.ui.screens.testActivity
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +8,7 @@ import com.hmelikyan.newsletter.mvvm.vm.BaseViewModel
 import kotlinx.coroutines.delay
 import java.util.*
 
-class AuthActivityViewModel : BaseViewModel() {
+class TestActivityViewModel : BaseViewModel() {
 
     init {
         setData()

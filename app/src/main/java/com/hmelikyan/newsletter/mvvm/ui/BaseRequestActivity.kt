@@ -1,7 +1,6 @@
 package com.hmelikyan.newsletter.mvvm.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.hmelikyan.newsletter.R
@@ -9,11 +8,7 @@ import com.hmelikyan.newsletter.mvvm.vm.BaseViewModel
 import com.hmelikyan.newsletter.mvvm.vm.ViewCommand
 import com.hmelikyan.newsletter.ui.commands.Commands
 
-abstract class BaseActivityMVVM<VB : ViewBinding, VM : BaseViewModel> : BaseActivity() {
-
-    private lateinit var _binding: VB
-    private val mBinding: VB
-        get() = _binding
+abstract class BaseRequestActivity<VB : ViewBinding, VM : BaseViewModel> : BaseActivity<VB>() {
 
     private val _viewModel by lazy { ViewModelProvider.NewInstanceFactory().create(viewModelType) }
     val mViewModel: VM
@@ -21,20 +16,21 @@ abstract class BaseActivityMVVM<VB : ViewBinding, VM : BaseViewModel> : BaseActi
 
     protected abstract val viewModelType: Class<VM>
 
-    protected abstract val inflate: (LayoutInflater) -> VB
-
     protected abstract fun initView(binding:VB,viewModel:VM)
 
+    @Deprecated("This function is deprecated for BaseRequestActivity child",ReplaceWith("initView(binding:VB,viewModel:VM)"))
+    override fun initView(binding: VB) {  }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        savedInstanceState?.putBoolean(DISCARD_CONTENT, true)
         super.onCreate(savedInstanceState)
-        _binding = inflate(layoutInflater)
-        initView(_binding,_viewModel)
+        initView(mBinding,_viewModel)
         _viewModel.viewCommands.observe(this) {
             proceedInternalCommands(it)
         }
         setContentView(StateLayout.create(this) {
-            withComponentActivity(this@BaseActivityMVVM)
-            withContent(_binding.root)
+            withComponentActivity(this@BaseRequestActivity)
+            withContent(mBinding.root)
             withStateListener(_viewModel.uiState)
             attach()
         })

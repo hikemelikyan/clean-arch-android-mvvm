@@ -4,7 +4,7 @@
     <data>
         <variable
             name="item"
-            type="com.hmelikyan.newsletter.ui.screens.authorizationActivity.adapters.CategoriesAdapterHorizontal.TranslateProvider" />
+            type="com.hmelikyan.newsletter.ui.screens.testActivity.adapters.CategoriesAdapterHorizontal.TranslateProvider" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

@@ -15,11 +15,13 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
+            app:elevation="0dp"
             android:layout_height="wrap_content"
             android:theme="@style/ToolbarTheme">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
+                app:elevation="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

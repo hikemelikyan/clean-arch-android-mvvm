@@ -2,11 +2,11 @@ package com.hmelikyan.newsletter.ui.screens.supportChatAdapter
 
 import android.view.LayoutInflater
 import com.hmelikyan.newsletter.databinding.ActivitySupportChatBinding
-import com.hmelikyan.newsletter.mvvm.ui.BaseActivityMVVM
+import com.hmelikyan.newsletter.mvvm.ui.BaseRequestActivity
 import com.hmelikyan.newsletter.mvvm.vm.ViewCommand
 import com.hmelikyan.newsletter.ui.screens.supportChatAdapter.adapters.SupportChatAdapter
 
-class SupportChatActivity: BaseActivityMVVM<ActivitySupportChatBinding, SupportChatViewModel>() {
+class SupportChatActivity: BaseRequestActivity<ActivitySupportChatBinding, SupportChatViewModel>() {
     override val viewModelType: Class<SupportChatViewModel>
         get() = SupportChatViewModel::class.java
     override val inflate: (LayoutInflater) -> ActivitySupportChatBinding

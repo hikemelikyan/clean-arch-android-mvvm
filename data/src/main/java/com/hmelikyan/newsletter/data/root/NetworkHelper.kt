@@ -16,7 +16,7 @@ interface NetworkHelper {
     annotation class PagingRequest
 
     @ApiRequest
-    suspend fun <R> call(action: suspend () -> Response<R>): R?
+    suspend fun <R> proceed(action: suspend () -> Response<R>): R?
 
     suspend fun <I : PaginationRequestModel, O : PaginationResponseModel<T>, T : Any> withModel(
         model:I,

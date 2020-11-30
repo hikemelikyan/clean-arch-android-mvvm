@@ -1,10 +1,9 @@
-package com.hmelikyan.newsletter.ui.screens.authorizationActivity.adapters
+package com.hmelikyan.newsletter.ui.screens.testActivity.adapters
 
 import android.animation.ValueAnimator
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.view.animation.BounceInterpolator
+import android.view.animation.DecelerateInterpolator
 import androidx.core.app.FrameMetricsAggregator
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
@@ -17,7 +16,7 @@ import com.hmelikyan.newsletter.mvvm.ui.BaseViewHolder
 import com.hmelikyan.newsletter.root.shared.ext.dpToPx
 import com.hmelikyan.newsletter.shared.util.JumpScrollListener
 
-class CategoriesAdapterHorizontal : BaseListAdapter<NotificationDomain, AdapterCategoryItemHorizontalBinding>(NotificationDomain.Companion) , JumpScrollListener.JumpAdapter{
+class CategoriesAdapterHorizontal : BaseListAdapter<NotificationDomain, AdapterCategoryItemHorizontalBinding>(NotificationDomain.Companion) , JumpScrollListener.JumpAdapter {
 
     private val translateProvider: TranslateProvider by lazy { TranslateProvider() }
 
@@ -31,17 +30,11 @@ class CategoriesAdapterHorizontal : BaseListAdapter<NotificationDomain, AdapterC
             }
     }
 
-    override fun inflate(
-        inflater: LayoutInflater,
-        parent: ViewGroup?,
-        attachToParent: Boolean
-    ): AdapterCategoryItemHorizontalBinding {
+    override fun inflate(inflater: LayoutInflater, parent: ViewGroup?, attachToParent: Boolean): AdapterCategoryItemHorizontalBinding {
         return AdapterCategoryItemHorizontalBinding.inflate(inflater, parent, attachToParent)
     }
 
-    override fun BaseViewHolder<AdapterCategoryItemHorizontalBinding, NotificationDomain>.bindActionTo(
-        data: NotificationDomain
-    ) {
+    override fun BaseViewHolder<AdapterCategoryItemHorizontalBinding, NotificationDomain>.bindActionTo(data: NotificationDomain) {
         binding.apply {
             item = translateProvider
             tvCategory.text = data.description
@@ -52,10 +45,10 @@ class CategoriesAdapterHorizontal : BaseListAdapter<NotificationDomain, AdapterC
         }
     }
 
-    override fun invalidate(lastValue:Float) {
-        ValueAnimator.ofFloat(lastValue, 0f)
+    override fun invalidate() {
+        ValueAnimator.ofFloat(translateProvider.translationY, 0f)
             .apply {
-                interpolator = BounceInterpolator()
+                interpolator = DecelerateInterpolator()
                 addUpdateListener {
                     translateProvider.translationY = it.animatedValue as Float
                 }
@@ -64,10 +57,6 @@ class CategoriesAdapterHorizontal : BaseListAdapter<NotificationDomain, AdapterC
     }
 
     override fun update(value: Float) {
-        translateProvider.translationY = when {
-            value > 1 -> 15.dpToPx().toFloat()
-            value < 0.5 -> 0f
-            else -> value * 15.dpToPx()
-        }
+        translateProvider.translationY = value * 15.dpToPx()
     }
 }

@@ -13,7 +13,7 @@ open class BaseViewModel : ViewModel(), CoroutineScope {
     val viewCommands: LiveData<ViewCommand>
         get() = _viewCommands
 
-    protected val _uiState = SingleLiveData<UIState>()
+    protected val _uiState = SingleLiveData<UIState>().apply { postValue(UIState.LOADING) }
     val uiState: LiveData<UIState>
         get() = _uiState
 

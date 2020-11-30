@@ -8,7 +8,8 @@ import com.hmelikyan.newsletter.data.root.Result
 import com.hmelikyan.newsletter.data.root.ResultFactory
 import com.hmelikyan.newsletter.data.root.UIState
 import com.hmelikyan.newsletter.domain.entities.NotificationDomain
-import com.hmelikyan.newsletter.domain.repository.NotificationsRepository
+import com.hmelikyan.newsletter.data.repository.NotificationsRepository
+import com.hmelikyan.newsletter.domain.mappers.NotificationResponseToNotificationDomainMapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -21,7 +22,7 @@ constructor(
 ) : GetNotificationsListUseCase {
 
     override suspend fun getNotificationList(model: GetNotificationsListRequestModel): Flow<Result<List<NotificationDomain>>> {
-        return resultFactory.getListResult { notificationsRepository.getNotifications(model) }
+        return resultFactory.getListResult { notificationsRepository.getNotifications(model, NotificationResponseToNotificationDomainMapper) }
     }
 
     override suspend fun getNotificationsList(model: GetNotificationsListRequestModel): Flow<Result<PagingData<NotificationResponseModel>>> {

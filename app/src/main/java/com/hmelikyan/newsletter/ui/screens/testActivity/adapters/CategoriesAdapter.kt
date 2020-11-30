@@ -1,4 +1,4 @@
-package com.hmelikyan.newsletter.ui.screens.authorizationActivity.adapters
+package com.hmelikyan.newsletter.ui.screens.testActivity.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

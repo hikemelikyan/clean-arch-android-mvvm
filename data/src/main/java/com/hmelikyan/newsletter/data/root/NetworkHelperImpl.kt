@@ -24,7 +24,7 @@ constructor(
     private val defaultInternalErrorMessage: String by lazy { context.getString(com.hmelikyan.newsletter.data.R.string.default_internal_error_message) }
     private val defaultNetworkErrorMessage: String by lazy { context.getString(com.hmelikyan.newsletter.data.R.string.default_network_error_message) }
 
-    override suspend fun <R> call(action: suspend () -> Response<R>): R? = callInternal { action() }
+    override suspend fun <R> proceed(action: suspend () -> Response<R>): R? = callInternal { action() }
 
     override suspend fun <I : PaginationRequestModel, O : PaginationResponseModel<T>, T : Any> withModel(
         model:I,

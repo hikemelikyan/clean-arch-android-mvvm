@@ -1,4 +1,4 @@
-package com.hmelikyan.newsletter.ui.screens.authorizationActivity.adapters
+package com.hmelikyan.newsletter.ui.screens.testActivity.adapters
 
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
