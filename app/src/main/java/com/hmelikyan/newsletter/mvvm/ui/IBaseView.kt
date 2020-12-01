@@ -11,4 +11,6 @@ interface IBaseView {
     fun showToast(message: String)
     fun showToast(@StringRes resId: Int)
 
+    fun hasPermission(permission:String):Boolean
+
 }

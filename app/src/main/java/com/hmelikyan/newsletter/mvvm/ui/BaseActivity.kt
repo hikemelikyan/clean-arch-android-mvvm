@@ -77,7 +77,7 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity(), IBaseView {
         showToast(resources.getString(resId))
     }
 
-    fun hasPermission(permission: String): Boolean {
+    override fun hasPermission(permission: String): Boolean {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED
     }
 

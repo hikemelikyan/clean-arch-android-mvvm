@@ -41,6 +41,8 @@ dependencies {
     implementation thirdPartyLibraries.kotlin
     implementation thirdPartyLibraries.retrofit
 
+    implementation thirdPartyLibraries.material
+
     implementation thirdPartyLibraries.dagger
     kapt kaptDeps.dagger_compiler
 

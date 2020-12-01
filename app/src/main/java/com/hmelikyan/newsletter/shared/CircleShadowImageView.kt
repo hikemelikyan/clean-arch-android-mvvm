@@ -3,6 +3,7 @@ package com.hmelikyan.newsletter.shared
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
@@ -68,7 +69,7 @@ class CircleShadowImageView @JvmOverloads constructor(
             1
         ).toFloat()
         incomingAttrs.recycle()
-        shadowPaint.maskFilter = BlurMaskFilter(shadowRadius, BlurMaskFilter.Blur.OUTER)
+        shadowPaint.maskFilter = BlurMaskFilter(shadowRadius, BlurMaskFilter.Blur.NORMAL)
         shadowPaint.color = shadowColor
     }
 
@@ -130,8 +131,8 @@ class CircleShadowImageView @JvmOverloads constructor(
         return roundedCorners and value == value
     }
 
-    fun setShadowColor(@ColorRes resId: Int) {
-        shadowPaint.color = ContextCompat.getColor(context, resId)
+    fun setShadowColor(@ColorInt color: Int) {
+        shadowPaint.color = color
         invalidate()
     }
 

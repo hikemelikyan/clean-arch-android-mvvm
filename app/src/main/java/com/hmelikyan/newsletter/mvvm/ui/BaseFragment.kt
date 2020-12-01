@@ -73,7 +73,7 @@ abstract class BaseFragment<VB:ViewBinding> : Fragment(), IBaseView {
         showToast(resources.getString(resId))
     }
 
-    fun hasPermission(permission: String): Boolean {
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || requireContext().checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED
+    override fun hasPermission(permission: String): Boolean {
+        return mActivity.hasPermission(permission)
     }
 }

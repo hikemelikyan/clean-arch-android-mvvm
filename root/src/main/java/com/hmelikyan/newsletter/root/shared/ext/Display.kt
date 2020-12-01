@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.res.Resources
 import android.util.DisplayMetrics
 import android.util.TypedValue
-import android.view.Window
 import android.view.WindowManager
 import com.hmelikyan.newsletter.root.R
 import kotlin.math.roundToInt
@@ -46,7 +45,10 @@ fun Context.getDisplayWidth(): Int {
 }
 
 fun Context.getListPreferredItemHeight(): Int {
-    return TypedValue.complexToDimensionPixelSize(getStyledAttribute(R.attr.listPreferredItemHeight), this.resources.displayMetrics)
+    return TypedValue.complexToDimensionPixelSize(
+        getStyledAttribute(R.attr.listPreferredItemHeight),
+        this.resources.displayMetrics
+    )
 }
 
 fun Context.getNavigationBarHeight(): Int {
@@ -56,10 +58,12 @@ fun Context.getNavigationBarHeight(): Int {
 }
 
 fun Activity.getStatusBarHeight(): Int {
-    val rectangle = android.graphics.Rect()
-    val window: Window = this.window
-    window.decorView.getWindowVisibleDisplayFrame(rectangle)
-    return rectangle.top
+    var result = 0
+    val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+    if (resourceId > 0) {
+        result = resources.getDimensionPixelSize(resourceId)
+    }
+    return result
 }
 
 fun Context.getActionBarHeight(): Int {

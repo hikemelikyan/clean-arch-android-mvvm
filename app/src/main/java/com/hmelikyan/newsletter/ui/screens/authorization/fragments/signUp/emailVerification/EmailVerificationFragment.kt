@@ -34,7 +34,7 @@ class EmailVerificationFragment: BaseRequestFragment<FragmentEmailVerificationBi
                 if(isCodeSent){
                     val extras = FragmentNavigatorExtras(
                         appIcon to appIcon.transitionName,
-                        tvSendCode to tvSendCode.transitionName,
+//                        tvSendCode to tvSendCode.transitionName,
                         title to title.transitionName
                     )
                     findNavController().navigate(EmailVerificationFragmentDirections.actionEmailVerificationFragmentToPersonalInfoFragment(),extras)

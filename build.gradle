@@ -32,7 +32,7 @@ buildscript {
                 constraintlayout            :"androidx.constraintlayout:constraintlayout:$constraint_version",
                 recyclerView                :"androidx.recyclerview:recyclerview:$recycler_version",
                 multidex                    :"androidx.multidex:multidex:$multi_dex_version",
-
+                palette                     :'androidx.palette:palette-ktx:1.0.0',
                 lifecycleCommon             :"androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion",
                 lifecycleData               :"androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion",
                 lifecycleViewModel          :"androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion",

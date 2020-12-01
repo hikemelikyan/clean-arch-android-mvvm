@@ -36,6 +36,19 @@
         android:id="@+id/personalInfoFragment"
         tools:layout="@layout/fragment_personal_info"
         android:name="com.hmelikyan.newsletter.ui.screens.authorization.fragments.signUp.personalInfo.PersonalInfoFragment"
-        android:label="PersonalInfoFragment" />
+        android:label="PersonalInfoFragment" >
+        <action
+            android:id="@+id/action_personalInfoFragment_to_createPasswordFragment"
+            app:destination="@id/createPasswordFragment"
+            app:enterAnim="@anim/fragment_anim_fade_in"
+            app:exitAnim="@anim/fragment_anim_fade_out"
+            app:popEnterAnim="@anim/fragment_anim_fade_in"
+            app:popExitAnim="@anim/fragment_anim_fade_out"/>
+    </fragment>
+    <fragment
+        android:id="@+id/createPasswordFragment"
+        tools:layout="@layout/fragment_create_password"
+        android:name="com.hmelikyan.newsletter.ui.screens.authorization.fragments.signUp.createPassword.CreatePasswordFragment"
+        android:label="CreatePasswordFragment" />
 
 </navigation>
