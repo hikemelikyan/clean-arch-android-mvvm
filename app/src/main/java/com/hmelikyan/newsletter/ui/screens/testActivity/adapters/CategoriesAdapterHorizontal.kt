@@ -94,6 +94,7 @@ class CategoriesAdapterHorizontal : BaseListAdapter<NotificationDomain, AdapterC
 	}
 
 	override fun update(value : Float) {
-		translateProvider.translationY = value * 15.dpToPx()
+		val newValue = value * 20.dpToPx()
+		translateProvider.translationY = if(newValue > 20.dpToPx()) 20.dpToPx().toFloat() else newValue
 	}
 }

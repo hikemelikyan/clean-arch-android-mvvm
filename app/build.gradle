@@ -79,6 +79,8 @@ dependencies {
     implementation thirdPartyLibraries.material
     implementation thirdPartyLibraries.palette
 
+    implementation thirdPartyLibraries.map_view
+
     implementation thirdPartyLibraries.legacy_support
 
     implementation thirdPartyLibraries.paging

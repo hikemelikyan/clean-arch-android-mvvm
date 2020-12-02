@@ -53,6 +53,7 @@ dependencies {
     implementation thirdPartyLibraries.appcompat
     implementation thirdPartyLibraries.fragment_ktx
     implementation thirdPartyLibraries.legacy_support
+    implementation thirdPartyLibraries.location
 
     implementation thirdPartyLibraries.constraintlayout
     implementation thirdPartyLibraries.recyclerView

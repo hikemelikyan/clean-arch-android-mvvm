@@ -11,14 +11,14 @@ import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.hmelikyan.newsletter.databinding.FragmentCreatePasswordBinding
 import com.hmelikyan.newsletter.mvvm.ui.BaseRequestFragment
 import com.hmelikyan.newsletter.mvvm.vm.ViewCommand
 import com.hmelikyan.newsletter.root.shared.ext.hide
 import com.hmelikyan.newsletter.root.shared.ext.show
 
-class CreatePasswordFragment :
-    BaseRequestFragment<FragmentCreatePasswordBinding, CreatePasswordViewModel>() {
+class CreatePasswordFragment : BaseRequestFragment<FragmentCreatePasswordBinding, CreatePasswordViewModel>() {
     override val inflate: (LayoutInflater, ViewGroup?, Boolean) -> FragmentCreatePasswordBinding
         get() = FragmentCreatePasswordBinding::inflate
 
@@ -32,6 +32,9 @@ class CreatePasswordFragment :
         sharedElementEnterTransition = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
         binding.apply {
             initCheckbox()
+            tvNext.setOnClickListener {
+                findNavController().navigate(CreatePasswordFragmentDirections.actionCreatePasswordFragmentToMapFragment())
+            }
         }
     }
 

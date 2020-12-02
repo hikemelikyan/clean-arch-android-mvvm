@@ -6,7 +6,7 @@ import androidx.navigation.findNavController
 import com.hmelikyan.newsletter.R
 import com.hmelikyan.newsletter.databinding.ActivityAuthorizationBinding
 import com.hmelikyan.newsletter.mvvm.ui.BaseActivity
-import com.hmelikyan.newsletter.shared.util.permissionChecker
+import com.hmelikyan.newsletter.root.shared.utils.permissionChecker.permissionChecker
 import com.hmelikyan.newsletter.ui.screens.authorization.fragments.AuthTypeFragment
 
 class AuthorizationActivity : BaseActivity<ActivityAuthorizationBinding>() {
@@ -24,27 +24,6 @@ class AuthorizationActivity : BaseActivity<ActivityAuthorizationBinding>() {
 				setSupportActionBar(mBinding.toolbar)
 				finishOnBack = destination.label == AuthTypeFragment::class.simpleName
 				supportActionBar?.setDisplayHomeAsUpEnabled(destination.label != AuthTypeFragment::class.simpleName)
-			}
-		}
-		permissionChecker {
-			withActivity(this@AuthorizationActivity)
-
-			permissions(android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION)
-
-			check {
-				doOnSuccess {
-					if (it == android.Manifest.permission.ACCESS_COARSE_LOCATION) {
-						showToast("Permission granted.")
-					}
-				}
-				doOnFailure {
-					if (it == android.Manifest.permission.ACCESS_COARSE_LOCATION) {
-						showToast("Permission denied.")
-					}
-				}
-				doOnNeverAsk {
-					showToast("Permission denied with never ask again")
-				}
 			}
 		}
 	}

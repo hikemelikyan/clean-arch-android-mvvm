@@ -44,6 +44,10 @@
         <activity
             android:name=".ui.screens.supportChatAdapter.SupportChatActivity"
             android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBUETHCK1UPEbVZpnHgWPTNenHNRv9pyWE" />
     </application>
 
 </manifest>

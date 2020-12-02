@@ -2,6 +2,7 @@
 <layout>
 
     <data>
+
         <variable
             name="item"
             type="com.hmelikyan.newsletter.ui.screens.testActivity.adapters.CategoriesAdapterHorizontal.TranslateProvider" />
@@ -12,9 +13,8 @@
         style="@style/PageContentStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp">
-
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
 
         <com.hmelikyan.newsletter.shared.CircleShadowImageView
             android:id="@+id/image"
