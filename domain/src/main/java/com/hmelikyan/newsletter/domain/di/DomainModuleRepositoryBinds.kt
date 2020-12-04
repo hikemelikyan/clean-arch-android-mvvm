@@ -2,8 +2,8 @@ package com.hmelikyan.newsletter.domain.di
 
 import com.hmelikyan.newsletter.data.di.NetworkModule
 import com.hmelikyan.newsletter.data.di.NetworkModuleBinds
-import com.hmelikyan.newsletter.data.repository.NotificationsRepository
-import com.hmelikyan.newsletter.data.repository.NotificationsRepositoryImpl
+import com.hmelikyan.newsletter.data.repository.AuthRepository
+import com.hmelikyan.newsletter.data.repository.AuthRepositoryImpl
 import dagger.Binds
 import dagger.Module
 
@@ -11,6 +11,6 @@ import dagger.Module
 abstract class DomainModuleRepositoryBinds {
 
     @Binds
-    abstract fun bindsNotificationsRepository(notificationsRepositoryImpl: NotificationsRepositoryImpl): NotificationsRepository
+    abstract fun bindsNotificationsRepository(authRepositoryImpl : AuthRepositoryImpl): AuthRepository
 
 }

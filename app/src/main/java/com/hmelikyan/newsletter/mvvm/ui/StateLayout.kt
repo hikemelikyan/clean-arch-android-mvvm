@@ -15,10 +15,10 @@ import com.hmelikyan.newsletter.data.root.UIState
 import com.hmelikyan.newsletter.databinding.LayoutErrorViewBinding
 import com.hmelikyan.newsletter.root.R as RootRes
 import com.hmelikyan.newsletter.R
-import com.hmelikyan.newsletter.root.shared.ext.dpToPx
-import com.hmelikyan.newsletter.root.shared.ext.hide
-import com.hmelikyan.newsletter.root.shared.ext.inflater
-import com.hmelikyan.newsletter.root.shared.ext.show
+import com.hmelikyan.newsletter.root.ext.dpToPx
+import com.hmelikyan.newsletter.root.ext.hide
+import com.hmelikyan.newsletter.root.ext.inflater
+import com.hmelikyan.newsletter.root.ext.show
 
 class StateLayout private constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0

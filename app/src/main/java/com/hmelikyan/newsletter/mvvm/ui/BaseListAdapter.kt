@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.viewbinding.ViewBinding
-import com.hmelikyan.newsletter.root.shared.ext.inflater
+import com.hmelikyan.newsletter.root.ext.inflater
 
 abstract class BaseListAdapter<T:Any, VB:ViewBinding>(callback:DiffUtil.ItemCallback<T>) : ListAdapter<T, BaseViewHolder<VB,T>>(callback) {
 

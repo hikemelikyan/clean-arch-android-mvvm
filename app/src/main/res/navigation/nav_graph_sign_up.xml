@@ -23,7 +23,11 @@
         android:id="@+id/emailVerificationFragment"
         android:name="com.hmelikyan.newsletter.ui.screens.authorization.fragments.signUp.emailVerification.EmailVerificationFragment"
         android:label="EmailVerificationFragment"
-        tools:layout="@layout/fragment_email_verification" >
+        tools:layout="@layout/fragment_email_verification">
+        <argument
+            android:name="codeId"
+            app:argType="integer"
+            app:nullable="false" />
         <action
             android:id="@+id/action_emailVerificationFragment_to_personalInfoFragment"
             app:destination="@id/personalInfoFragment"
@@ -32,23 +36,34 @@
             app:popEnterAnim="@anim/fragment_anim_fade_in"
             app:popExitAnim="@anim/fragment_anim_fade_out" />
     </fragment>
+
     <fragment
         android:id="@+id/personalInfoFragment"
-        tools:layout="@layout/fragment_personal_info"
         android:name="com.hmelikyan.newsletter.ui.screens.authorization.fragments.signUp.personalInfo.PersonalInfoFragment"
-        android:label="PersonalInfoFragment" >
+        android:label="PersonalInfoFragment"
+        tools:layout="@layout/fragment_personal_info">
+        <argument
+            android:name="codeId"
+            app:argType="integer"
+            app:nullable="false" />
         <action
             android:id="@+id/action_personalInfoFragment_to_createPasswordFragment"
             app:destination="@id/createPasswordFragment"
             app:enterAnim="@anim/fragment_anim_fade_in"
             app:exitAnim="@anim/fragment_anim_fade_out"
             app:popEnterAnim="@anim/fragment_anim_fade_in"
-            app:popExitAnim="@anim/fragment_anim_fade_out"/>
+            app:popExitAnim="@anim/fragment_anim_fade_out" />
     </fragment>
+
     <fragment
         android:id="@+id/createPasswordFragment"
-        tools:layout="@layout/fragment_create_password"
         android:name="com.hmelikyan.newsletter.ui.screens.authorization.fragments.signUp.createPassword.CreatePasswordFragment"
-        android:label="CreatePasswordFragment" />
+        android:label="CreatePasswordFragment"
+        tools:layout="@layout/fragment_create_password">
+        <argument
+            android:name="codeId"
+            app:argType="com.hmelikyan.newsletter.data.model.requestModels.ReqModelRegister"
+            app:nullable="false" />
+    </fragment>
 
 </navigation>

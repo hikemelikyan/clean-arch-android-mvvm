@@ -15,54 +15,60 @@ import com.hmelikyan.newsletter.R
 import com.hmelikyan.newsletter.databinding.FragmentPhoneVerificationBinding
 import com.hmelikyan.newsletter.mvvm.ui.BaseRequestFragment
 import com.hmelikyan.newsletter.mvvm.vm.ViewCommand
-import com.hmelikyan.newsletter.root.shared.ext.show
+import com.hmelikyan.newsletter.root.ext.show
+import com.hmelikyan.newsletter.ui.commands.Commands
 
 class PhoneVerificationFragment : BaseRequestFragment<FragmentPhoneVerificationBinding, PhoneVerificationViewModel>() {
 
-    private var isCodeSent = false
+	override val inflate : (LayoutInflater, ViewGroup?, Boolean) -> FragmentPhoneVerificationBinding
+		get() = FragmentPhoneVerificationBinding::inflate
 
-    override val inflate: (LayoutInflater, ViewGroup?, Boolean) -> FragmentPhoneVerificationBinding
-        get() = FragmentPhoneVerificationBinding::inflate
+	override val viewModelType : Class<PhoneVerificationViewModel>
+		get() = PhoneVerificationViewModel::class.java
 
-    override val viewModelType: Class<PhoneVerificationViewModel>
-        get() = PhoneVerificationViewModel::class.java
+	override fun initView(binding : FragmentPhoneVerificationBinding, viewModel : PhoneVerificationViewModel) {
+		sharedElementEnterTransition = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
+		binding.apply {
+			setViewModel(viewModel)
+			tvSendCode.setOnClickListener {
+				if (mViewModel.codeId.value != null) {
+					mViewModel.verifyPhoneNumber()
+				} else {
+					mViewModel.getSmsCode()
+				}
+			}
+		}
+	}
 
-    override fun initView(binding: FragmentPhoneVerificationBinding, viewModel: PhoneVerificationViewModel) {
-        sharedElementEnterTransition = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
-        binding.apply {
-            tvSendCode.setOnClickListener {
-                if(isCodeSent){
-                    val extras = FragmentNavigatorExtras(
-                        appIcon to appIcon.transitionName,
-                        tvSendCode to tvSendCode.transitionName,
-                        title to title.transitionName
-                    )
-                    findNavController().navigate(PhoneVerificationFragmentDirections.actionPhoneVerificationFragmentToEmailVerificationFragment(),extras)
-                }else{
-                    isCodeSent = !isCodeSent
-                    showCodeEdit()
-                    changeSendCodeTitle()
-                }
-            }
-        }
-    }
+	override fun proceedViewCommand(command : ViewCommand) {
+		when (command) {
+			is Commands.CodeSent -> showCodeEdit()
+			is Commands.PhoneVerified -> navigateToEmailVerification(command.codeId)
+		}
+	}
 
-    private fun showCodeEdit() {
-        val set2 = ConstraintSet()
-        set2.clone(mBinding.rootLayout.also { mBinding.etPin.show() })
+	private fun showCodeEdit() {
+		val set2 = ConstraintSet()
+		set2.clone(mBinding.rootLayout.also {
+			mBinding.etPin.show()
+			mBinding.tvSendCode.setText(getString(R.string.next))
+		})
 
-        val transition: Transition = ChangeBounds()
-        transition.interpolator = OvershootInterpolator()
-        transition.duration = FrameMetricsAggregator.ANIMATION_DURATION.toLong()
-        set2.applyTo(mBinding.rootLayout)
-        TransitionManager.beginDelayedTransition(mBinding.rootLayout, transition)
-    }
+		val transition : Transition = ChangeBounds()
+		transition.interpolator = OvershootInterpolator()
+		transition.duration = FrameMetricsAggregator.ANIMATION_DURATION.toLong()
+		set2.applyTo(mBinding.rootLayout)
+		TransitionManager.beginDelayedTransition(mBinding.rootLayout, transition)
+	}
 
-    private fun changeSendCodeTitle() {
-        mBinding.tvSendCode.text = getString(R.string.next)
-    }
-
-    override fun proceedViewCommand(command: ViewCommand) {
-
-    }
+	private fun navigateToEmailVerification(codeId : Int) {
+		mBinding.apply {
+			val extras = FragmentNavigatorExtras(
+				appIcon to appIcon.transitionName,
+				tvSendCode to tvSendCode.transitionName,
+				title to title.transitionName
+			)
+			findNavController().navigate(PhoneVerificationFragmentDirections.actionPhoneVerificationFragmentToEmailVerificationFragment(codeId), extras)
+		}
+	}
 }

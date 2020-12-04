@@ -6,7 +6,7 @@ import androidx.navigation.findNavController
 import com.hmelikyan.newsletter.R
 import com.hmelikyan.newsletter.databinding.ActivityAuthorizationBinding
 import com.hmelikyan.newsletter.mvvm.ui.BaseActivity
-import com.hmelikyan.newsletter.root.shared.utils.permissionChecker.permissionChecker
+import com.hmelikyan.newsletter.root.utils.permissionChecker.permissionChecker
 import com.hmelikyan.newsletter.ui.screens.authorization.fragments.AuthTypeFragment
 
 class AuthorizationActivity : BaseActivity<ActivityAuthorizationBinding>() {
@@ -17,7 +17,7 @@ class AuthorizationActivity : BaseActivity<ActivityAuthorizationBinding>() {
 		get() = ActivityAuthorizationBinding::inflate
 
 	override fun initView(binding : ActivityAuthorizationBinding) {
-		window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+//		window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 		binding.apply {
 			val navController = findNavController(R.id.fragment_container)
 			navController.addOnDestinationChangedListener { _, destination, _ ->

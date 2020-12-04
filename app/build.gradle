@@ -81,6 +81,8 @@ dependencies {
 
     implementation thirdPartyLibraries.map_view
 
+    implementation 'org.jsoup:jsoup:1.13.1'
+
     implementation thirdPartyLibraries.legacy_support
 
     implementation thirdPartyLibraries.paging
@@ -88,5 +90,7 @@ dependencies {
     testImplementation testDependencies.junit
     androidTestImplementation androidTestsDependencies.test_runner
     androidTestImplementation androidTestsDependencies.espresso_core
+    androidTestImplementation androidTestsDependencies.uiAuthomator
+    androidTestImplementation androidTestsDependencies.hamcrest
 
 }

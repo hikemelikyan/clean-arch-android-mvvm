@@ -5,18 +5,16 @@ import android.text.SpannableString
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
-import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import com.hmelikyan.newsletter.databinding.FragmentCreatePasswordBinding
 import com.hmelikyan.newsletter.mvvm.ui.BaseRequestFragment
 import com.hmelikyan.newsletter.mvvm.vm.ViewCommand
-import com.hmelikyan.newsletter.root.shared.ext.hide
-import com.hmelikyan.newsletter.root.shared.ext.show
+import com.hmelikyan.newsletter.root.ext.hide
+import com.hmelikyan.newsletter.root.ext.show
 
 class CreatePasswordFragment : BaseRequestFragment<FragmentCreatePasswordBinding, CreatePasswordViewModel>() {
     override val inflate: (LayoutInflater, ViewGroup?, Boolean) -> FragmentCreatePasswordBinding
@@ -32,9 +30,6 @@ class CreatePasswordFragment : BaseRequestFragment<FragmentCreatePasswordBinding
         sharedElementEnterTransition = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
         binding.apply {
             initCheckbox()
-            tvNext.setOnClickListener {
-                findNavController().navigate(CreatePasswordFragmentDirections.actionCreatePasswordFragmentToMapFragment())
-            }
         }
     }
 
@@ -86,6 +81,7 @@ class CreatePasswordFragment : BaseRequestFragment<FragmentCreatePasswordBinding
             return this
         }
 
+        // TODO: 12/2/2020 add to resources
         val spannableString = SpannableString(tvTermsAndPolicy.text)
         spannableString.setClickable("Условия и Положения"){
             showToast("Условия и Положения")

@@ -11,7 +11,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.snackbar.Snackbar
 import com.hmelikyan.newsletter.R
-import com.hmelikyan.newsletter.root.shared.ext.getColorCompat
+import com.hmelikyan.newsletter.root.ext.getColorCompat
 
 abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity(), IBaseView {
 

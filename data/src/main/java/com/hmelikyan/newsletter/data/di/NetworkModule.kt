@@ -4,7 +4,7 @@ import android.content.Context
 import com.hmelikyan.newsletter.root.BuildConfig
 import com.hmelikyan.newsletter.root.di.ApplicationContext
 import com.hmelikyan.newsletter.root.di.AuthInterceptor
-import com.hmelikyan.newsletter.root.shared.utils.SharedPreferencesHelper
+import com.hmelikyan.newsletter.root.utils.SharedPreferencesHelper
 import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides

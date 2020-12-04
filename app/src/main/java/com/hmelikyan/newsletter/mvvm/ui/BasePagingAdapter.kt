@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.viewbinding.ViewBinding
-import com.hmelikyan.newsletter.root.shared.ext.inflater
+import com.hmelikyan.newsletter.root.ext.inflater
 
 abstract class BasePagingAdapter<T:Any,VB:ViewBinding>(callback: DiffUtil.ItemCallback<T>) : PagingDataAdapter<T,BaseViewHolder<VB,T>>(callback) {
 

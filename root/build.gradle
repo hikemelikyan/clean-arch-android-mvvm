@@ -15,7 +15,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-        buildConfigField "String", "BASEURL", "\"https://baggleback.abmdemo.me/\""
+        buildConfigField "String", "BASEURL", "\"https://api.gsport24.co.uk/\""
     }
 
     buildTypes {

@@ -5,11 +5,11 @@ import retrofit2.Response
 data class ResponseModel<T>(
     val success: Boolean,
     val data: T?,
-    val message: List<ResponseMessageModel>
+    val messages: List<ResponseMessageModel>
 )
 
 data class ResponseMessageModel(
-    val key: Int,
+    val key: String,
     val message: String
 )
 

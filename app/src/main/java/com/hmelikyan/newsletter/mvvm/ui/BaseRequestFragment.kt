@@ -43,9 +43,9 @@ abstract class BaseRequestFragment<VB : ViewBinding, VM : BaseViewModel> : BaseF
 
     private fun proceedInternalCommands(command: ViewCommand) {
         when (command) {
-            is Commands.NetworkErrorViewCommand -> showNetworkErrorSnackBar(getString(R.string.default_network_error_message))
-            is Commands.ShowMessageViewCommand -> showToast(command.resId)
-            is Commands.ShowMessageTextViewCommand -> showServerError(command.errorMessage)
+            is Commands.NetworkError -> showNetworkErrorSnackBar(getString(R.string.default_network_error_message))
+            is Commands.ShowMessage -> showToast(command.resId)
+            is Commands.ShowMessageText -> showToast(command.errorMessage)
             else -> proceedViewCommand(command)
         }
     }

@@ -20,7 +20,7 @@ import com.hmelikyan.newsletter.databinding.AdapterCategoryItemHorizontalBinding
 import com.hmelikyan.newsletter.domain.entities.NotificationDomain
 import com.hmelikyan.newsletter.mvvm.ui.BaseListAdapter
 import com.hmelikyan.newsletter.mvvm.ui.BaseViewHolder
-import com.hmelikyan.newsletter.root.shared.ext.dpToPx
+import com.hmelikyan.newsletter.root.ext.dpToPx
 import com.hmelikyan.newsletter.shared.util.JumpScrollListener
 
 class CategoriesAdapterHorizontal : BaseListAdapter<NotificationDomain, AdapterCategoryItemHorizontalBinding>(NotificationDomain.Companion), JumpScrollListener.JumpAdapter {

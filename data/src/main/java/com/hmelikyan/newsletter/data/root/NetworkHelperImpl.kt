@@ -9,7 +9,7 @@ import com.hmelikyan.newsletter.data.model.requestModels.PaginationRequestModel
 import com.hmelikyan.newsletter.data.model.responseModels.root.PaginationResponseModel
 import com.hmelikyan.newsletter.data.model.responseModels.root.Response
 import com.hmelikyan.newsletter.root.di.ApplicationContext
-import com.hmelikyan.newsletter.root.shared.utils.NetworkConnectivityChecker
+import com.hmelikyan.newsletter.root.utils.NetworkConnectivityChecker
 import kotlinx.coroutines.flow.Flow
 import retrofit2.HttpException
 import javax.inject.Inject
@@ -56,7 +56,7 @@ constructor(
                 )
                 !responseBody.success -> throw ApiException(
                     UIState.SERVER_ERROR,
-                    response.body()?.message.toString(),
+                    response.body()?.messages?.get(0)?.message.toString(),
                     null
                 )
                 else -> responseBody.data

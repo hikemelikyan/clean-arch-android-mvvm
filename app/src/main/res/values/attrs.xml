@@ -5,17 +5,7 @@
         <attr name="textSize" format="dimension" />
         <attr name="textColor" format="color" />
         <attr name="loadingColor" format="color" />
-        <attr name="loadingSize" format="dimension" />
-        <attr name="defaultLoading" format="boolean" />
-        <attr name="textGravity" format="enum">
-            <enum name="start" value="0" />
-            <enum name="center" value="1" />
-            <enum name="center_vertical" value="2" />
-            <enum name="center_horizontal" value="3" />
-            <enum name="end" value="4" />
-        </attr>
         <attr name="backgroundDrawable" format="reference" />
-        <attr name="backgroundColor" format="color" />
     </declare-styleable>
 
     <declare-styleable name="CircleShadowImageView">

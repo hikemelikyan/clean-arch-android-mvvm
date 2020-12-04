@@ -6,7 +6,7 @@ import com.hmelikyan.newsletter.di.AppComponent
 import com.hmelikyan.newsletter.di.DaggerAppComponent
 import com.hmelikyan.newsletter.root.di.DeviceID
 import com.hmelikyan.newsletter.root.di.RootModule
-import com.hmelikyan.newsletter.root.shared.utils.SharedPreferencesHelper
+import com.hmelikyan.newsletter.root.utils.SharedPreferencesHelper
 import javax.inject.Inject
 
 class Application : Application() {
@@ -37,8 +37,7 @@ class Application : Application() {
         appComponent.inject(this)
 
         mShared.saveDeviceId(deviceId)
-        mShared.saveAuthToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzMDc4IiwianRpIjoiM2UyNzdkM2QtNDlkMS00NDRhLWJjMzYtYTI2YWU4ZDFhNDEyIiwiaWF0IjoxNjA2Mzg2NjY2LCJwZXJzb25JZCI6IjMwNzgiLCJyb2xlIjoiVXNlciIsIm5iZiI6MTYwNjM4NjY2NiwiZXhwIjoxNjA2OTkxNDY2LCJpc3MiOiJCYWdnbGUuQXBpIiwiYXVkIjoiQmFnZ2xlLlVzZXIifQ.w6sQZbzuRfd9z85OWV2RC5q2ZRI2FYjwL1qrnSfdct4")
-    }
+ }
 
     fun getAppComponent(): AppComponent {
         return appComponent

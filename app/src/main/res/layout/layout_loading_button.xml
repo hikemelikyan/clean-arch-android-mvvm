@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <Button
+    <TextView
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:visibility="gone"
-        tools:visibility="visible" />
+        tools:text="Button text"
+        style="@style/BaseBtnWidgetStyle"
+        android:textAllCaps="false" />
 
     <ProgressBar
         android:id="@+id/progress"
