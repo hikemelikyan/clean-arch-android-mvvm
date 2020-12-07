@@ -6,6 +6,7 @@
 
     <color name="colorAccent_40">#6644A589</color>
 
+    <color name="editErrorColor">#80FF0000</color>
 
     <color name="window_background_gray">#333943</color>
 

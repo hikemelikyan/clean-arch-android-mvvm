@@ -1,10 +1,14 @@
 package com.hmelikyan.newsletter.ui.screens.testActivity.adapters
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.BounceInterpolator
+import android.view.animation.LinearInterpolator
 import androidx.core.app.FrameMetricsAggregator
 import androidx.core.graphics.drawable.toBitmap
 import androidx.databinding.BaseObservable
@@ -82,19 +86,25 @@ class CategoriesAdapterHorizontal : BaseListAdapter<NotificationDomain, AdapterC
 		}
 	}
 
-	override fun invalidate() {
-		ValueAnimator.ofFloat(translateProvider.translationY, 0f)
+	override fun down() {
+		ValueAnimator.ofFloat(15.dpToPx().toFloat(), 0f)
 			.apply {
 				interpolator = BounceInterpolator()
 				addUpdateListener {
 					translateProvider.translationY = it.animatedValue as Float
 				}
-				duration = FrameMetricsAggregator.ANIMATION_DURATION.toLong()
+				duration = 400L
 			}.start()
 	}
 
-	override fun update(value : Float) {
-		val newValue = value * 20.dpToPx()
-		translateProvider.translationY = if(newValue > 20.dpToPx()) 20.dpToPx().toFloat() else newValue
+	override fun up() {
+		ValueAnimator.ofFloat(0f, 15.dpToPx().toFloat())
+			.apply {
+				interpolator = LinearInterpolator()
+				addUpdateListener {
+					translateProvider.translationY = it.animatedValue as Float
+				}
+				duration = FrameMetricsAggregator.ANIMATION_DURATION.toLong()
+			}.start()
 	}
 }

@@ -13,24 +13,24 @@ class JumpScrollListener(
 		super.onScrollStateChanged(recyclerView, newState)
 		when (newState) {
             RecyclerView.SCROLL_STATE_IDLE -> {
-                adapter.invalidate()
+                adapter.down()
             }
             RecyclerView.SCROLL_STATE_DRAGGING -> {
-                scrollStart = recyclerView.computeHorizontalScrollOffset().toFloat()
+	            adapter.up()
             }
 		}
 	}
 
 	override fun onScrolled(recyclerView : RecyclerView, dx : Int, dy : Int) {
 		super.onScrolled(recyclerView, dx, dy)
-		adapter.update(abs(recyclerView.computeHorizontalScrollOffset() - scrollStart) / (recyclerView.computeHorizontalScrollRange() / 2).toFloat())
+//		adapter.update(abs(recyclerView.computeHorizontalScrollOffset() - scrollStart) / (recyclerView.computeHorizontalScrollRange()).toFloat())
 	}
 
 	interface JumpAdapter {
 
-		fun invalidate()
+		fun down()
 
-		fun update(value : Float)
+		fun up()
 	}
 
 }

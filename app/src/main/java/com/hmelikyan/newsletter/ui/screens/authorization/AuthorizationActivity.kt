@@ -17,7 +17,7 @@ class AuthorizationActivity : BaseActivity<ActivityAuthorizationBinding>() {
 		get() = ActivityAuthorizationBinding::inflate
 
 	override fun initView(binding : ActivityAuthorizationBinding) {
-//		window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+		window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 		binding.apply {
 			val navController = findNavController(R.id.fragment_container)
 			navController.addOnDestinationChangedListener { _, destination, _ ->

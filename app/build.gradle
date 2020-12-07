@@ -81,8 +81,6 @@ dependencies {
 
     implementation thirdPartyLibraries.map_view
 
-    implementation 'org.jsoup:jsoup:1.13.1'
-
     implementation thirdPartyLibraries.legacy_support
 
     implementation thirdPartyLibraries.paging

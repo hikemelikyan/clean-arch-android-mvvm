@@ -16,6 +16,7 @@ import com.hmelikyan.newsletter.databinding.FragmentPhoneVerificationBinding
 import com.hmelikyan.newsletter.mvvm.ui.BaseRequestFragment
 import com.hmelikyan.newsletter.mvvm.vm.ViewCommand
 import com.hmelikyan.newsletter.root.ext.show
+import com.hmelikyan.newsletter.shared.ext.validationError
 import com.hmelikyan.newsletter.ui.commands.Commands
 
 class PhoneVerificationFragment : BaseRequestFragment<FragmentPhoneVerificationBinding, PhoneVerificationViewModel>() {
@@ -32,9 +33,19 @@ class PhoneVerificationFragment : BaseRequestFragment<FragmentPhoneVerificationB
 			setViewModel(viewModel)
 			tvSendCode.setOnClickListener {
 				if (mViewModel.codeId.value != null) {
-					mViewModel.verifyPhoneNumber()
+					if (mViewModel.phoneCode.value.isNullOrEmpty()) {
+						etPin.validationError { it.length >= 4 }
+						tvSendCode.isLoading(false)
+					} else {
+						mViewModel.verifyPhoneNumber()
+					}
 				} else {
-					mViewModel.getSmsCode()
+					if (mViewModel.phoneNumber.value.isNullOrEmpty()) {
+						etPhone.validationError { it.length in 9..12 }
+						tvSendCode.isLoading(false)
+					} else {
+						mViewModel.getSmsCode()
+					}
 				}
 			}
 		}

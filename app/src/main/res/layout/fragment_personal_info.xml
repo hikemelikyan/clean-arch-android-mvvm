@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:overScrollMode="never"
+    android:fillViewport="true"
     android:scrollbarSize="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,12 +42,13 @@
         <EditText
             android:id="@+id/etName"
             style="@style/SignInEditStyle"
+            android:imeOptions="actionNext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:hint="@string/name"
             android:importantForAutofill="no"
-            android:inputType="phone"
+            android:inputType="textPersonName"
             app:layout_constraintTop_toBottomOf="@id/title" />
 
         <EditText
@@ -54,10 +56,11 @@
             style="@style/SignInEditStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
             android:layout_marginTop="20dp"
             android:hint="@string/surname"
             android:importantForAutofill="no"
-            android:inputType="phone"
+            android:inputType="textPersonName"
             app:layout_constraintTop_toBottomOf="@id/etName" />
 
         <EditText
@@ -66,9 +69,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:imeOptions="actionDone"
             android:hint="@string/second_name"
             android:importantForAutofill="no"
-            android:inputType="phone"
+            android:inputType="textPersonName"
             app:layout_constraintTop_toBottomOf="@id/etSurname" />
 
         <EditText

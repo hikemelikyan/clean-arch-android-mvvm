@@ -27,5 +27,7 @@
     <string name="password">Пароль</string>
     <string name="submit_password">Подтвердите пароль</string>
     <string name="i_agree_with_therms_and_policy">Я прочел(а) и согласен(а) Условия и Положения и Условия Конфидециальности</string>
+    <string name="select_birth_date">Select birth date</string>
+    <string name="choose_your_gender">Choose your gender</string>
 
 </resources>

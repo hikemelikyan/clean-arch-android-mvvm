@@ -125,6 +125,14 @@ class LoadingButton @JvmOverloads constructor(
 		invalidateInternal()
 	}
 
+	fun isLoading(isLoading : Boolean) {
+		if (isLoading) {
+			showLoading()
+		} else {
+			hideLoading()
+		}
+	}
+
 	private fun invalidateInternal() {
 		removeAllViews()
 		makeButton()
