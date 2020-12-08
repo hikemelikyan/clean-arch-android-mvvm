@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.hmelikyan.newsletter.ui.screens.authorization.fragments.signUp.emailVerification.EmailVerificationViewModel" />
+            type="com.armboldmind.gsport24.ui.screens.authorization.fragments.signUp.emailVerification.EmailVerificationViewModel" />
     </data>
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -73,7 +73,7 @@
                 android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/etEmail" />
 
-            <com.hmelikyan.newsletter.shared.LoadingButton
+            <com.armboldmind.gsport24.shared.LoadingButton
                 android:id="@+id/tvSendCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

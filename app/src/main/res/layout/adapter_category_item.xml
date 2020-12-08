@@ -52,7 +52,7 @@
 
     </androidx.cardview.widget.CardView>
 
-    <com.hmelikyan.newsletter.shared.CircleShadowImageView
+    <com.armboldmind.gsport24.shared.CircleShadowImageView
         android:id="@+id/image"
         android:layout_width="@dimen/view_size_10"
         android:layout_height="@dimen/view_size_10"

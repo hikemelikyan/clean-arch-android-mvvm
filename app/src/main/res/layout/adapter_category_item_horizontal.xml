@@ -5,7 +5,7 @@
 
         <variable
             name="item"
-            type="com.hmelikyan.newsletter.ui.screens.testActivity.adapters.CategoriesAdapterHorizontal.TranslateProvider" />
+            type="com.armboldmind.gsport24.ui.screens.testActivity.adapters.CategoriesAdapterHorizontal.TranslateProvider" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,7 +16,7 @@
         android:paddingTop="20dp"
         android:paddingBottom="20dp">
 
-        <com.hmelikyan.newsletter.shared.CircleShadowImageView
+        <com.armboldmind.gsport24.shared.CircleShadowImageView
             android:id="@+id/image"
             android:layout_width="@dimen/view_size_10"
             android:layout_height="@dimen/view_size_10"

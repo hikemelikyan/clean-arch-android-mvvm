@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/phoneVerificationFragment"
-        android:name="com.hmelikyan.newsletter.ui.screens.authorization.fragments.signUp.phoneVerification.PhoneVerificationFragment"
+        android:name="com.armboldmind.gsport24.ui.screens.authorization.fragments.signUp.phoneVerification.PhoneVerificationFragment"
         android:label="PhoneVerificationFragment"
         tools:layout="@layout/fragment_phone_verification">
         <action
@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/emailVerificationFragment"
-        android:name="com.hmelikyan.newsletter.ui.screens.authorization.fragments.signUp.emailVerification.EmailVerificationFragment"
+        android:name="com.armboldmind.gsport24.ui.screens.authorization.fragments.signUp.emailVerification.EmailVerificationFragment"
         android:label="EmailVerificationFragment"
         tools:layout="@layout/fragment_email_verification">
         <argument
@@ -39,7 +39,7 @@
 
     <fragment
         android:id="@+id/personalInfoFragment"
-        android:name="com.hmelikyan.newsletter.ui.screens.authorization.fragments.signUp.personalInfo.PersonalInfoFragment"
+        android:name="com.armboldmind.gsport24.ui.screens.authorization.fragments.signUp.personalInfo.PersonalInfoFragment"
         android:label="PersonalInfoFragment"
         tools:layout="@layout/fragment_personal_info">
         <argument
@@ -57,12 +57,12 @@
 
     <fragment
         android:id="@+id/createPasswordFragment"
-        android:name="com.hmelikyan.newsletter.ui.screens.authorization.fragments.signUp.createPassword.CreatePasswordFragment"
+        android:name="com.armboldmind.gsport24.ui.screens.authorization.fragments.signUp.createPassword.CreatePasswordFragment"
         android:label="CreatePasswordFragment"
         tools:layout="@layout/fragment_create_password">
         <argument
             android:name="codeId"
-            app:argType="com.hmelikyan.newsletter.data.model.requestModels.ReqModelRegister"
+            app:argType="com.armboldmind.gsport24.data.model.requestModels.ReqModelRegister"
             app:nullable="false" />
     </fragment>
 

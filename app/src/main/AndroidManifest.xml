@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hmelikyan.newsletter">
+    package="com.armboldmind.gsport24">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".Application"
+        android:name="com.armboldmind.gsport24.Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.screens.splash.SplashScreenFirstActivity"
+            android:name="com.armboldmind.gsport24.ui.screens.splash.SplashScreenFirstActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.SplashTheme">
@@ -28,20 +28,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.screens.splash.SplashScreenSecondActivity"
+            android:name="com.armboldmind.gsport24.ui.screens.splash.SplashScreenSecondActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ui.screens.authorization.AuthorizationActivity"
+            android:name="com.armboldmind.gsport24.ui.screens.authorization.AuthorizationActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".ui.screens.testActivity.TestActivity"
+            android:name="com.armboldmind.gsport24.ui.screens.testActivity.TestActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.screens.supportChatAdapter.SupportChatActivity"
+            android:name="com.armboldmind.gsport24.ui.screens.supportChatAdapter.SupportChatActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
 

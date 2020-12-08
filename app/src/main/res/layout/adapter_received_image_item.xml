@@ -8,7 +8,7 @@
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
 
-    <com.hmelikyan.newsletter.shared.CircleShadowImageView
+    <com.armboldmind.gsport24.shared.CircleShadowImageView
         android:id="@+id/image"
         android:layout_width="0dp"
         android:layout_height="0dp"

@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.hmelikyan.newsletter.ui.screens.supportChatAdapter.SupportChatViewModel" />
+            type="com.armboldmind.gsport24.ui.screens.supportChatAdapter.SupportChatViewModel" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

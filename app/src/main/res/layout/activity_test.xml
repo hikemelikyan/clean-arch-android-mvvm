@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.hmelikyan.newsletter.ui.screens.testActivity.TestActivityViewModel" />
+            type="com.armboldmind.gsport24.ui.screens.testActivity.TestActivityViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

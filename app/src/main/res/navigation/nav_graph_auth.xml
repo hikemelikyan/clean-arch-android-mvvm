@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/authTypeFragment"
-        android:name="com.hmelikyan.newsletter.ui.screens.authorization.fragments.AuthTypeFragment"
+        android:name="com.armboldmind.gsport24.ui.screens.authorization.fragments.AuthTypeFragment"
         android:label="AuthTypeFragment"
         tools:layout="@layout/fragment_auth_type">
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.hmelikyan.newsletter.ui.screens.authorization.fragments.signIn.SignInFragment"
+        android:name="com.armboldmind.gsport24.ui.screens.authorization.fragments.signIn.SignInFragment"
         android:label="SignInFragment"
         tools:layout="@layout/fragment_sign_in" />
 
